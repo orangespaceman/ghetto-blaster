@@ -1,0 +1,45 @@
+/*
+ * Iphone CSS
+ */
+
+	/* reset some styles */
+		header {
+			position:static;
+			padding:15px;
+		}
+
+		header h1,
+		header #say, 
+		header #volume,
+		header a#stop {
+			margin:0 0 10px 0;
+			float:none;
+			padding:0;
+		}
+		
+		header #say input.text {
+			width:7em;
+		}
+		
+		header #volume, 
+		header #volume ul {
+			width:auto;
+			padding:0;
+			float:none;
+		}
+	
+		#content {
+			padding:15px;
+		}
+		
+		#content .folder-container {
+			position:static;
+			padding-top:0;
+			margin-bottom:0;			
+		}
+		
+		#keys {
+			display:none;
+		}
+		
+	/*  */

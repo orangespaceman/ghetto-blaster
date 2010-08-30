@@ -1,0 +1,2 @@
+pete (192.168.0.7) made the server say 'Hello!' - 2010-08-06 12:54:01
+pete (::1) played the file '/ping.mp3' - 2010-08-30 11:21:35

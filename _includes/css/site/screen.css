@@ -1,0 +1,730 @@
+/*
+ * Global CSS
+ */
+
+/*
+ * Eric Meyer's Global Reset
+ * http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/
+ */
+	html, body, div, span, applet, object, iframe,
+	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+	a, abbr, acronym, address, big, cite, code,
+	del, dfn, em, font, img, ins, kbd, q, s, samp,
+	small, strike, strong, sub, sup, tt, var,
+	dl, dt, dd, ol, ul, li,
+	fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td,
+	article, aside, dialog, figure, footer, header,
+	hgroup, menu, nav, section,
+	time, mark, audio, video {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		outline: 0;
+		font-weight: inherit;
+		font-style: inherit;
+		font-size: 100%;
+		font-family: inherit;
+		vertical-align: baseline;
+	}
+
+	/* remember to define focus styles! */
+	:focus {
+		outline: 0;
+	}
+
+	body {
+		line-height: 1;
+		color: black;
+		background: white;
+	}
+
+	ol, ul {
+		list-style: none;
+	}
+
+	/* tables still need 'cellspacing="0"' in the markup */
+	table {
+		border-collapse: separate;
+		border-spacing: 0;
+	}
+
+	caption, th, td {
+		text-align: left;
+		font-weight: normal;
+	}
+
+	blockquote:before, blockquote:after,
+	q:before, q:after {
+		content: "";
+	}
+
+	blockquote, q {
+		quotes: "" "";
+	}
+	
+	/* HTML 5 element fixes for older browsers */
+	header, nav, article, section, figure, aside, footer { display: block; }
+	time { display: inline;}
+
+
+/*
+ * Custom fonts
+ */
+		@font-face {
+			font-family: 'LaffayetteComicProRegular';
+			src: url('../../fonts/Laffayette_Comic_Pro-webfont.eot');
+			src: local('☺'), url('../../fonts/Laffayette_Comic_Pro-webfont.woff') format('woff'), url('../../fonts/Laffayette_Comic_Pro-webfont.ttf') format('truetype'), url('../../fonts/Laffayette_Comic_Pro-webfont.svg#webfontvUJQBftx') format('svg');
+			font-weight: normal;
+			font-style: normal;
+		}
+		
+		@font-face {
+			font-family: 'junkostypewriterRegular';
+			src: url('../../fonts/junkos_typewriter-webfont.eot');
+			src: local('☺'), url('../../fonts/junkos_typewriter-webfont.woff') format('woff'), url('../../fonts/junkos_typewriter-webfont.ttf') format('truetype'), url('../../fonts/junkos_typewriter-webfont.svg#webfontIyvYTZSB') format('svg');
+			font-weight: normal;
+			font-style: normal;
+		}
+		
+		@font-face {
+			font-family: 'saxMonoRegular';
+			src: url('../../fonts/saxmono-webfont.eot');
+			src: local('☺'), url('../../fonts/saxmono-webfont.woff') format('woff'), url('../../fonts/saxmono-webfont.ttf') format('truetype'), url('../../fonts/saxmono-webfont.svg#webfontI56Qffhi') format('svg');
+			font-weight: normal;
+			font-style: normal;
+		}
+		
+		@font-face {
+			font-family: 'SilkscreenNormal';
+			src: url('../../fonts/slkscreb-webfont.eot');
+			src: local('☺'), url('../../fonts/slkscreb-webfont.woff') format('woff'), url('../../fonts/slkscreb-webfont.ttf') format('truetype'), url('../../fonts/slkscreb-webfont.svg#webfontR9lP7Fqf') format('svg');
+			font-weight: normal;
+			font-style: normal;
+		}
+		
+		
+
+
+/* HTML elements */
+	html {
+		overflow-y:scroll;
+	}
+	
+	body {
+		background: #fff;
+		color:#666;
+		font:62.5%/1.25 LaffayetteComicProRegular, Helvetica, Arial, sans-serif; /* reset 1em to 10px */
+	}
+	
+	/* for sticky footer */
+	html, body { height:100%; }
+	
+
+	/* headings */
+		h1,
+		h2, 
+		h3, 
+		h4 { 
+		}
+
+		h1 { 
+			font-family: SilkscreenNormal, monospace;
+			line-height:1;
+			font-size:3em;
+			font-weight:bold;
+			margin:0 10px;
+		}
+
+		h2 {
+			font-size:1.6em;
+			margin-bottom:0.4em;
+			color:#000;
+		}
+		
+		h3 {
+			font-size:2.0em;
+			font-weight:bold;
+			margin-bottom:1em;
+		}
+		
+		h4 {
+			font-size:1.3em;
+		}
+		
+		/* headings - extra classes */
+
+
+	/* forms */
+		fieldset { 
+			border:0; 
+		}
+	
+		legend { 
+			display:none; 
+		}
+
+		form {
+		}
+
+		/* reset all standard form fonts - cross-browser compatibility */
+		form * {
+			font-family:LaffayetteComicProRegular, Arial, Helvetica, sans-serif;
+		}
+
+		input {
+			font-size:1.2em;
+		}
+	
+		select {
+			font-size:1.2em;
+		}
+	
+		option {
+		}
+
+		label, 
+		form p {
+			display:block;
+			font-size:1.6em;
+			color:#333;
+		}
+	
+		textarea {
+			border:1px solid #c0c0c0;
+			font-size:1.6em;
+			padding:4px;
+			width:27.5em;
+		}
+	
+		/* forms - extra classes */
+			input.text {
+				border:1px solid #c0c0c0;
+				margin-bottom:0.5em;
+				padding:4px 4px 4px 4px;
+				width:10em;
+			}
+			
+			input.text,
+			option,
+			textarea {
+				font-family:saxMonoRegular, monospace;
+			}
+			
+			input.text:focus,
+			textarea:focus {
+				-moz-box-shadow: 0px 0px 10px #ccc;
+				-webkit-box-shadow:0px 0px 10px #ccc;
+				box-shadow: 0px 0px 10px #ccc;				
+				background:#eee;
+			}
+		
+			input.text.inactive {
+				color:#999;
+			}
+
+			input.radio {
+			}
+		
+			input.checkbox {
+				float:left;
+				margin-right:5px;
+			}
+		
+			p.error,
+			p.submit-error,
+			label.error {
+				color:#f90;
+				font-weight:bold;
+			}
+			
+			p.error,
+			p.submit-error {
+				float:left;
+				margin:5px 0 0 15px;
+				display:inline;
+			}
+
+			button,
+			.button {
+				float:left;
+				border:0px;
+				color:#999;
+				cursor:pointer;
+				overflow:visible;
+				width:auto;
+				text-align:center;
+				font-size:1.1em;
+				font-weight:bold;
+				background:#f2f2f2;
+				padding:5px 3px 5px 3px;
+				
+				-moz-border-radius: 3px;
+				-webkit-border-radius: 3px;
+				border-radius: 3px;					
+			}
+			
+			button:hover,
+			.button:hover {
+				background:#518d36;
+				color:#000;
+			}
+			
+			
+			/* forms - input containers */
+				.input-container {
+					position:relative;
+				}
+
+				.input-container label {
+					float:left;
+					width:11em;
+					margin-right:1em;
+					padding-top:0.3em;
+					font-size:1.6em;
+				}
+
+				.input-container select {
+					float:left;
+					margin-right:5px;
+				}
+
+				.input-container p.error {
+					position:absolute;
+					right:-120px;
+					top:0;
+					width:170px;
+					margin:0;
+					padding:5px 5px 2px 20px;
+					background:#333;
+					font-size:1.2em;
+					float:left;
+					
+					-moz-border-radius:3px;
+					-webkit-border-radius:3px;
+					border-radius:3px;
+				}
+
+				.input-container input.text,
+				.input-container textarea {
+					float:left;
+					
+					font-size:1.6em;
+					padding:4px;
+					border:1px solid #ccc;
+					margin-right:10px;
+					
+					-moz-border-radius:3px;
+					-webkit-border-radius:3px;
+					border-radius:3px;					
+				}
+				
+				.input-container .button {
+					float:left;
+					margin-right:10px;
+				}
+				
+				.input-container img {
+					float:left;
+					margin-top:5px;
+				}
+			
+			
+	/* tables */
+		table {
+			margin-bottom:1em;
+			width:100%; 
+		}
+		
+		table caption {
+			font-size:1.4em;
+			font-weight:bold;
+		}
+	
+		thead th { 
+			font-size:1.2em;
+			font-weight:bold;
+		}
+	
+		td, 
+		th { 
+			padding:1em 0;
+			font-size:1.1em; 
+			vertical-align:middle;
+			border-bottom:1px dotted #3d0c2a;
+		}
+		
+		th { 
+			font-weight:bold; 
+		}
+	
+		/* tables - extra classes */
+			tr.odd-row td { 
+				background:#f5f5f5; 
+			}
+		
+
+	/* lists */
+		ul,
+		ol, 
+		dl {
+			font-size:1.4em;
+			margin-bottom:1.5em;
+		}
+
+		ol {
+			list-style: decimal;
+			margin-left: 2em;
+		}
+		
+		ul {
+			margin-left:0;
+		}
+
+		li {
+			line-height:1.5;
+			padding-bottom:0.5em;
+		}
+		
+		ul li {
+			padding-left:12px;
+		}
+
+		
+		/* lists - nested lists */
+			li ol, 
+			li ul { 
+				margin:0 2em;
+			}
+			
+			li li { 
+				font-size:1em; 
+			}
+
+		/* lists - extra classes */
+			
+
+	/* text */
+		p,
+		address,
+		time {
+			font-size:1.1em;
+			font-style:normal;
+			margin-bottom:0.2em;
+		}
+		
+		time {
+			display:block;
+			color:#999;
+		}
+		
+		em { 
+			font-style:italic;
+		}
+		
+		strong {
+			font-weight:bold;
+			color:#333;
+		}
+		
+		/* text:extra classes */
+			
+
+	/* misc */
+		iframe {
+		}
+		
+		img {
+			background:transparent no-repeat left top;
+
+		}
+		
+		/* misc: extra classes */
+			
+
+	/* links */
+		a {
+			color:#000; 
+			outline:0; 
+			font-style:inherit; 
+			font-weight:bold;
+			text-decoration:none; 
+		}
+	
+		a:hover,
+		a:active,
+		a:focus { 
+			text-decoration:underline;
+		}
+		
+		a:hover {
+			cursor:pointer;
+		}
+		
+		a:focus { 
+			outline:1px dotted #666;
+		}
+		
+		/* links - extra classes */
+
+		
+	
+	/* deprecated tags - alerting CMS users that they are using illegal tags */
+	/*b, big, blink, center, font, i, layer, marquee, small, u {
+			background:yellow;
+			border:2px dashed green;
+			color:red;
+			font-size:30px;
+			font-weight:bold;
+		}
+		b:after, big:after, blink:after, center:after,  font:after, i:after, layer:after, marquee:after, small:after, u:after { 
+			content:" You are using a deprecated tag; please fix." 
+		}*/
+
+
+/* Extra classes */
+	/* last element in a row */
+		.row-end {
+			margin-right:0 !important;
+		}
+	
+	
+	/* print styles */
+		.printonly { 
+			display:none !important; 
+		}
+		
+		
+	/* clearfix - fixes float clearing issues */
+		 .clearfix:after { /* fixed for IE */
+			 clear:both; 
+			 content:"."; 
+			 display:block; 
+			 height:0; 
+			 visibility:hidden;
+		}
+		
+
+	/* Text included for non-visual users, hide content for screen */
+		.context {
+			height:1px; 
+			left:0px; 
+			overflow:hidden;
+			position:absolute; 
+			top:-500px;
+			width:1px; 
+		}
+		
+
+	/* Hides contents for screen, but leaves structure in place - for transparent images where the below can't be used */
+		.context-flow {
+			text-indent:-20000px;
+			background:transparent no-repeat left top;
+		}
+		
+
+	/* text that is 'replaced' by an image (via a span) */
+		.replaced {
+			position:relative;
+		}
+
+		.replaced span {
+			background:transparent no-repeat left top;
+			display:block;
+			height:100%;
+			left:-1px;
+			position:absolute;
+			top:0;
+			width:100%;
+		}
+		
+
+	/* horizontal rule (hr) - allows universal control */
+		.hr {
+			border-top:1px solid #d4cdcd; /* necessary to ensure hr is only 1px high in all browsers */
+			clear:both;
+			color:#d4cdcd; /* needed for IE */
+			height:1px;
+			margin:30px 0 30px 0;
+			padding:0;
+		}
+
+		hr {
+			display:none;
+		}
+	
+	
+	/* horizontal navigation list */
+        ul.horiznavlist { }
+
+        /* float selected element and all other links */
+        ul.horiznavlist li {
+            display : block;
+            float : left;
+            padding : 0px 8px 0px 8px;
+            border-right : 1px solid #ccc;
+            background : none;
+        }
+
+        /* remove left padding from first item in a list */
+        ul.horiznavlist li.first {
+            padding-left : 0px !important;
+        }
+
+        /* remove right padding from last item in a list */
+        ul.horiznavlist li.last {
+            padding-right : 0px !important;
+            border-right : 0px !important;
+        }
+
+
+/* global ids / areas */
+	#wrapper {
+		min-height: 100%;
+		margin-bottom:-20px;
+	}
+	
+	
+	/* header */
+		header {
+			padding: 0;
+			background:#000;
+			border-bottom:2px solid #f90;
+			position:fixed;
+			top:0;
+			z-index:500;
+			width:100%;
+		}
+		
+		header h1 {
+			float:left;
+			width:280px;
+			padding-top:13px;
+		}
+		
+		
+		/* header : say */
+			header #say {
+				float:left;
+				width:350px;
+				padding:12px 10px 10px 10px;
+				margin-right:20px;
+			}
+			
+			header #say form {
+				margin:0;
+			}
+			
+			header #say form select {
+				padding-top:4px;
+				padding-bottom:4px;
+			}
+		
+		
+		/* header : vol block */
+			header #volume {
+				float:right;
+				width:220px;
+				padding:15px 10px 10px 10px;
+			}
+			
+			header #volume a {
+				color:#fff;
+			}
+			
+			header #volume ul {
+				margin:0;
+				float:right;
+				font-size:1.1em;
+				padding:2px 0 0 22px;
+			}
+			
+			header #volume ul.loading {
+				background:url(../../img/site/ajax-loader-white.gif) #000 no-repeat left top;
+			}
+			
+			header a#stop {
+				float:left;
+				font-size:2em;
+				color:#fff;
+				margin-top:15px;
+			}
+			
+	
+	/* content */
+		#content {
+			padding:0 10px 10px 10px;
+			margin-left:160px;
+		}
+		
+		#content .folder-container {
+			position:relative;
+			padding-top:75px;
+			margin-bottom:-75px;
+		}
+
+		#content .folder {
+			padding:10px;
+			background:#ccc;
+			margin-bottom:20px;
+			display:block;
+		}
+		
+		
+		#content .folder li.file {
+			float:left;
+		}
+		
+		#content .folder li.file a {
+			padding:5px;
+			background:#eee;
+			font-size:1em;
+			margin:0 5px 5px 0;
+			display:block;
+		}
+		
+		#content .folder li.file a:hover {
+			text-decoration:none;
+			background:#ddd;
+		}
+	
+	
+	/* quicklinks */
+		#keys {
+			position:fixed;
+			left:10px;
+			top:75px;
+			z-index:499;
+			padding:5px;
+			background:#ccc;
+			width:135px;
+		}
+		
+		#keys ul {
+			font-size:1em;
+			margin:0;
+		}
+		
+		#keys li {
+			float:left;
+			clear:left;
+			margin:0;
+			padding:0;
+		}
+
+		#keys a {
+			background:#eee;
+			display:block;
+			padding:1px 5px;
+			margin:0 2px 2px 0;
+		}
+		
+		#keys a:hover {
+			background:#ddd;
+		}
+	
+	
+	/* login */
+		#login {
+			padding-top:75px;
+		}
