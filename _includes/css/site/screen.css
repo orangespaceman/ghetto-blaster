@@ -71,37 +71,7 @@
 /*
  * Custom fonts
  */
-		@font-face {
-			font-family: 'LaffayetteComicProRegular';
-			src: url('../../fonts/Laffayette_Comic_Pro-webfont.eot');
-			src: local('☺'), url('../../fonts/Laffayette_Comic_Pro-webfont.woff') format('woff'), url('../../fonts/Laffayette_Comic_Pro-webfont.ttf') format('truetype'), url('../../fonts/Laffayette_Comic_Pro-webfont.svg#webfontvUJQBftx') format('svg');
-			font-weight: normal;
-			font-style: normal;
-		}
-		
-		@font-face {
-			font-family: 'junkostypewriterRegular';
-			src: url('../../fonts/junkos_typewriter-webfont.eot');
-			src: local('☺'), url('../../fonts/junkos_typewriter-webfont.woff') format('woff'), url('../../fonts/junkos_typewriter-webfont.ttf') format('truetype'), url('../../fonts/junkos_typewriter-webfont.svg#webfontIyvYTZSB') format('svg');
-			font-weight: normal;
-			font-style: normal;
-		}
-		
-		@font-face {
-			font-family: 'saxMonoRegular';
-			src: url('../../fonts/saxmono-webfont.eot');
-			src: local('☺'), url('../../fonts/saxmono-webfont.woff') format('woff'), url('../../fonts/saxmono-webfont.ttf') format('truetype'), url('../../fonts/saxmono-webfont.svg#webfontI56Qffhi') format('svg');
-			font-weight: normal;
-			font-style: normal;
-		}
-		
-		@font-face {
-			font-family: 'SilkscreenNormal';
-			src: url('../../fonts/slkscreb-webfont.eot');
-			src: local('☺'), url('../../fonts/slkscreb-webfont.woff') format('woff'), url('../../fonts/slkscreb-webfont.ttf') format('truetype'), url('../../fonts/slkscreb-webfont.svg#webfontR9lP7Fqf') format('svg');
-			font-weight: normal;
-			font-style: normal;
-		}
+
 		
 		
 
@@ -114,7 +84,7 @@
 	body {
 		background: #fff;
 		color:#666;
-		font:62.5%/1.25 LaffayetteComicProRegular, Helvetica, Arial, sans-serif; /* reset 1em to 10px */
+		font:62.5%/1.25 Helvetica, Arial, sans-serif; /* reset 1em to 10px */
 	}
 	
 	/* for sticky footer */
@@ -129,7 +99,7 @@
 		}
 
 		h1 { 
-			font-family: SilkscreenNormal, monospace;
+			font-family: monospace;
 			line-height:1;
 			font-size:3em;
 			font-weight:bold;
@@ -186,7 +156,7 @@
 		label, 
 		form p {
 			display:block;
-			font-size:1.6em;
+			font-size:1.2em;
 			color:#333;
 		}
 	
@@ -223,12 +193,9 @@
 				color:#999;
 			}
 
-			input.radio {
-			}
-		
+			input.radio, 
 			input.checkbox {
-				float:left;
-				margin-right:5px;
+				margin-left:1px;
 			}
 		
 			p.error,
@@ -278,10 +245,6 @@
 
 				.input-container label {
 					float:left;
-					width:11em;
-					margin-right:1em;
-					padding-top:0.3em;
-					font-size:1.6em;
 				}
 
 				.input-container select {
@@ -625,7 +588,7 @@
 			header #volume {
 				float:right;
 				width:220px;
-				padding:15px 10px 10px 10px;
+				padding:5px 10px 5px 10px;
 			}
 			
 			header #volume a {
@@ -640,14 +603,39 @@
 			}
 			
 			header #volume ul.loading {
-				background:url(../../img/site/ajax-loader-white.gif) #000 no-repeat left top;
+				background:url(../../img/site/ajax-loader-black.gif) #000 no-repeat left top;
 			}
 			
 			header a#stop {
-				float:left;
+				display:block;
 				font-size:2em;
 				color:#fff;
 				margin-top:15px;
+				overflow:hidden;
+			}
+		
+		
+		/* header : play control block */
+			header form#play-method {
+				float:right;
+				width:220px;
+				padding:0 10px 10px 0;
+			}
+			
+			header form#play-method .input-container {
+				margin:0;
+			}
+			
+			header form#play-method label {
+				float:right;
+				margin-left:15px;
+				cursor:pointer;
+				color:#666;
+				font-size:1.1em;
+			}
+			
+			header form#play-method label input.radio {
+				vertical-align:bottom;
 			}
 			
 	
@@ -676,7 +664,7 @@
 		}
 		
 		#content .folder li.file a {
-			padding:5px;
+			padding:5px !important;
 			background:#eee;
 			font-size:1em;
 			margin:0 5px 5px 0;
@@ -687,6 +675,20 @@
 			text-decoration:none;
 			background:#ddd;
 		}
+		
+		/* yahoo media player style overrides */
+			#content .folder li.file a em {
+				display:none !important;
+			}
+			
+			#ymp-tray,
+			#ymp-relevance,
+			a#ymp-btn-pop,
+			a#ymp-btn-close {
+				display:none !important;
+			}
+			
+			
 	
 	
 	/* quicklinks */
@@ -727,4 +729,11 @@
 	/* login */
 		#login {
 			padding-top:75px;
+		}
+		
+		#login label {
+			width:11em;
+			margin-right:1em;
+			padding-top:0.3em;
+			font-size:1.6em;
 		}

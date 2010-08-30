@@ -12,9 +12,9 @@
 	
 			// init order by
 			ghettoBlaster.init({
-				ajaxPath: "./_includes/php/Ajax.php"
+				ajaxPath: "./_includes/php/Ajax.php",
+				interval: 10
 			});
-			
 		});
 
 
@@ -22,5 +22,16 @@
 	 * Window load calls for all pages
 	 */
 		$(window).load(function() {
-			
+
 		});
+			
+
+	/*
+	 * Yahoo media player config
+	 */	
+		var YMPParams ={
+			displaystate:1,
+			autoadvance:false,
+			parse:false,
+			playlink:false
+		};

@@ -61,18 +61,19 @@
 				echo json_encode($result);
 			break;
 			
+			
 			case "mute":
 				$result = $ghettoBlaster->mute();
 				$log->logMessage("hit mute");
 				echo json_encode($result);
 			break;
+			
 
 			case "say":
 				$result = $ghettoBlaster->say($_POST['say'], $_POST['voice']);
 				$log->logMessage("made the server say '" . $_POST['say'] . "'");
 				echo json_encode($result);
 			break;
-
 		}
 	}
 	

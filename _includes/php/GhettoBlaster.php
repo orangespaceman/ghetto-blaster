@@ -16,6 +16,11 @@ class GhettoBlaster {
 	 */
 	var $volume = 0;
 	
+	/*
+	 *
+	 */
+	var $symlink = "sfx";
+	
 	
 	/**
 	 * A list of filenames & directory names to ignore
@@ -63,6 +68,11 @@ class GhettoBlaster {
 	 */
 	function setPath($path) {
 		$this->path = $path;
+		
+		// condition : does symlink exist?
+		if (!@readlink($this->symlink)) {
+			symlink($path, $this->symlink);
+		}
 	}
 	
 	
@@ -71,6 +81,7 @@ class GhettoBlaster {
 	 */
 	function play($play) {
 		$play = strip_tags($play);
+		$play = str_replace('/sfx', '', $play);
 		$cmd = 'afplay ' . $this->path . $play;
 		shell_exec($cmd);
 		return $cmd;
@@ -82,6 +93,7 @@ class GhettoBlaster {
 	 */
 	function stop() {
 		shell_exec('killall afplay');
+		//shell_exec('killall say');
 		return "done";
 	}
 	

@@ -26,6 +26,7 @@ sfx = "/Users/pete/Music/sfx/"
 ;username = "password"
 
 hello = "world"
+pete = "ginger"
 
 ;*/
 ;?>

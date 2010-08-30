@@ -45,6 +45,8 @@ class PageBuilder {
 			google.load("jquery", "1.4.2");
 		</script>
 
+		<script src="http://mediaplayer.yahoo.com/js"></script>
+
 		<script src="./_includes/js/site/ghettoBlaster.js"></script>
 		<script src="./_includes/js/site/init.js"></script>
 	</head>
@@ -102,6 +104,15 @@ class PageBuilder {
 						<li class="last"><a id="volume-up" href="#">Up</a>
 					</ul>
 				</div>
+				<form id="play-method" method="post" action="">
+					<fieldset>
+						<legend>Play method</legend>
+						<div class="input-container clearfix">
+							<label for="play-broadcast">Broadcast <input type="radio" class="radio" name="play" id="play-broadcast" value="broadcast" checked="checked" /></label>
+							<label for="play-preview">Preview <input type="radio" class="radio" name="play" id="play-preview" value="preview" /></label>
+						</div>
+					</fieldset>
+				</form>
 			</header>
 			
 			
@@ -145,7 +156,7 @@ class PageBuilder {
 
 					foreach ($file['files'] as $fileKey => $fileDetails) {
 						$return .= '
-							<li class="file"><a href="/'.$fileDetails['dir'].$fileDetails['file'].'">'.$fileDetails['file'].'</a></li>
+							<li class="file"><a href="/sfx/'.$fileDetails['dir'].$fileDetails['file'].'">'.$fileDetails['file'].'</a></li>
 						';
 					}
 

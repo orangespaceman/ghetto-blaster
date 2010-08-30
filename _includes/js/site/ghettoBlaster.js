@@ -4,6 +4,23 @@
  */
 var ghettoBlaster = function(){
 
+	// volume controller ul
+	$volumeUl = null;
+	
+	
+	// volume text
+	$volText = null;
+
+	
+	// volume checking interval
+	volInterval = null;
+	
+	
+	// play type (preview or broadcast)
+	playType = null;
+	
+
+
 	/**
 	 * The options passed through to this function
 	 *
@@ -17,7 +34,15 @@ var ghettoBlaster = function(){
 		 *
 		 * @var String
 		 */		
-		ajaxPath : null
+		ajaxPath : null,
+		
+		
+		/**
+		 * The interval time (in seconds) between volume checks
+		 *
+		 * 
+		 */
+		interval : 10
 	};
 	
 	
@@ -41,6 +66,12 @@ var ghettoBlaster = function(){
 				//return false;
 			}
 		}
+		
+		
+		// store dom elements for later use
+		$volume = $("#volume ul");
+		$volText = $("li#volume-level");
+		
 		
 		// set play links
 		$("li.file a").bind('click', function(e){
@@ -67,6 +98,7 @@ var ghettoBlaster = function(){
 			mute();
 		});
 		
+		
 		// speech
 		$("#say form").bind('submit', function(e){
 			e.preventDefault();
@@ -80,36 +112,22 @@ var ghettoBlaster = function(){
 		
 		// add stop button
 		addStop();
+		
+		
+		// check volume every x seconds
+		volInterval = setInterval(getVolume, options.interval * 1000);
+		
+		
+		// create broadcast/preview functionality
+		var playSelector = $('input[name=play]');
+		playType = playSelector.val();
+		playSelector.bind('change', function(e){
+			playType = $(this).val();
+		});
 	};
 	
 		
 
-	/*
-	 *
-	 */
-	var play = function(el) {
-		
-		var postData, response;
-		
-		var file = $(el).attr('href');
-
-		postData = 'file='+file+'&method=play';
-		postData += '&random='+Math.random();
-
-		// submit request
-		response = $.post(
-			options.ajaxPath,
-			postData,
-			function(data, textStatus){
-				
-				var result = $.parseJSON(data);
-				
-				console.log(result);
-
-			});
-	};
-	
-	
 	/*
 	 *
 	 */
@@ -128,25 +146,58 @@ var ghettoBlaster = function(){
 	
 	
 	/*
+	 *
+	 */
+	var play = function(el) {
+		var file = $(el).attr('href');
+
+		// condition : broadcast or preview?
+		if (playType == "broadcast") {
+			_ajax({
+				method: "play",
+				params: 'file='+file
+			});
+			
+		} else if (playType == "preview") {
+			previewTrackPlay(el);
+		}
+	};
+	
+	
+	/*
 	 * 
 	 */
 	var stopSound = function() {
+		// condition : broadcast or preview?
+		if (playType == "broadcast") {
+			_ajax({
+				method: "stop"
+			});
+		} else if (playType == "preview") {
+			previewTrackStop();
+		}
+	};
 	
-		var postData, response;
-		
-		postData = 'method=stop';
-		postData += '&random='+Math.random();
-
-		// submit request
-		response = $.post(
-			options.ajaxPath,
-			postData,
-			function(data, textStatus){
-				
-				var result = $.parseJSON(data);
-				
-				console.log(result);
-
+	
+	/*
+	 *
+	 */	
+	var say = function(txt, voice) {
+		_ajax({
+			method: "say",
+			params: 'say='+txt+'&voice='+voice
+		});
+	};
+	
+	
+	
+	/*
+	 *
+	 */	
+	var volumeUp = function() {
+		_ajax({
+			method: "volumeUp",
+			update: $volText
 		});
 	};
 
@@ -155,51 +206,11 @@ var ghettoBlaster = function(){
 	/*
 	 *
 	 */	
-	var volumeUp = function() {
-		
-		var postData, response;
-
-		postData = 'method=volumeUp';
-		postData += '&random='+Math.random();
-
-		// submit request
-		response = $.post(
-			options.ajaxPath,
-			postData,
-			function(data, textStatus){
-
-				var result = $.parseJSON(data);
-				$("li#volume-level").text(result.volume);
-
-				//console.log(result);
-
-			});
-	};
-
-
-
-	/*
-	 *
-	 */	
 	var volumeDown = function() {
-		
-		var postData, response;
-
-		postData = 'method=volumeDown';
-		postData += '&random='+Math.random();
-
-		// submit request
-		response = $.post(
-			options.ajaxPath,
-			postData,
-			function(data, textStatus){
-
-				var result = $.parseJSON(data);
-				$("li#volume-level").text(result.volume);
-
-				//console.log(result);
-
-			});
+		_ajax({
+			method: "volumeDown",
+			update: $volText
+		});
 	};
 	
 	
@@ -208,10 +219,41 @@ var ghettoBlaster = function(){
 	 *
 	 */	
 	var mute = function() {
+		_ajax({
+			method: "mute",
+			update: $volText
+		});
+	};
+	
+	
+	
+	/*
+	 *
+	 */	
+	var getVolume = function() {
+		_ajax({
+			method: "getVolume",
+			update: $volText
+		});
+	};
+	
+	
+	
+	/*
+	 *
+	 */
+	var _ajax = function(opts) {
+	
+		showLoader();
 		
 		var postData, response;
 
-		postData = 'method=mute';
+		postData = 'method='+opts.method;
+
+		if (!!opts.params) {
+			postData += '&'+opts.params;
+		}
+
 		postData += '&random='+Math.random();
 
 		// submit request
@@ -221,7 +263,12 @@ var ghettoBlaster = function(){
 			function(data, textStatus){
 
 				var result = $.parseJSON(data);
-				$("li#volume-level").text(result.volume);
+				
+				if (!!opts.update) {
+					opts.update.text(result.volume);
+				}
+				
+				hideLoader();
 
 				//console.log(result);
 
@@ -230,28 +277,45 @@ var ghettoBlaster = function(){
 	
 	
 	
+	
+	
 	/*
 	 *
-	 */	
-	var say = function(txt, voice) {
-		
-		var postData, response;
-
-		postData = 'say='+txt+'&voice='+voice+'&method=say';
-		postData += '&random='+Math.random();
-
-		// submit request
-		response = $.post(
-			options.ajaxPath,
-			postData,
-			function(data, textStatus){
-
-				var result = $.parseJSON(data);
-
-				console.log(result);
-
-			});
+	 */
+	var showLoader = function() {
+		$volume.addClass('loading');
 	};
+	
+	
+	
+	/*
+	 *
+	 */
+	var hideLoader = function() {
+		$volume.removeClass('loading');
+	};
+	
+	
+	
+	/*
+	 * 
+	 */
+	var previewTrackPlay = function(el) {
+		YAHOO.MediaPlayer.stop();
+		
+		var file = $(el).parent()[0];
+		YAHOO.MediaPlayer.addTracks(file, null, true);
+		YAHOO.MediaPlayer.play();
+	};
+
+
+	/*
+	 *
+	 */
+	var previewTrackStop = function() {
+		YAHOO.MediaPlayer.stop();
+	};
+
 	
 
 	/**
