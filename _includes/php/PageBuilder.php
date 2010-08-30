@@ -29,9 +29,10 @@ class PageBuilder {
 		<link rel="icon" href="./_includes/icons/favicon.ico" type="image/x-icon" />
 		';
 		
-		// iphone?
+		// mobile?
 		$iPhone = preg_match("/iP(hone|od)/i", $_SERVER['HTTP_USER_AGENT']);
 		$iP = preg_match("/iP(hone|od|ad)/i", $_SERVER['HTTP_USER_AGENT']);
+		$android = preg_match("/Android/i", $_SERVER['HTTP_USER_AGENT']);
 		if ($iPhone == true){
 		  		$return .= '
 		<link rel="stylesheet" type="text/css" href="./_includes/css/site/iphone.css" media="screen" />		

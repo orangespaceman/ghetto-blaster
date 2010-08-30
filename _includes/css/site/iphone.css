@@ -1,5 +1,5 @@
 /*
- * Iphone CSS
+ * Mobile CSS
  */
 
 	/* reset some styles */
@@ -27,9 +27,11 @@
 			padding:0;
 			float:none;
 		}
-	
+			
 		#content {
+			clear:both;
 			padding:15px;
+			margin:0;
 		}
 		
 		#content .folder-container {
@@ -38,6 +40,7 @@
 			margin-bottom:0;			
 		}
 		
+		header form#play-method,
 		#keys {
 			display:none;
 		}
