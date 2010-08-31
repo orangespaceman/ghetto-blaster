@@ -618,6 +618,7 @@
 		/* header : play control block */
 			header form#play-method {
 				float:right;
+				clear:right;
 				width:220px;
 				padding:0 10px 10px 0;
 			}
