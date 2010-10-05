@@ -51,7 +51,7 @@ class PageBuilder {
 		<script src="./_includes/js/site/ghettoBlaster.js"></script>
 		<script src="./_includes/js/site/init.js"></script>
 	</head>
-	<body>
+	<body id="ghetto-blaster">
 		<div id="wrapper">
 			<header>
 				<h1>Ghetto Blaster</h1>
@@ -213,7 +213,7 @@ class PageBuilder {
 		$iP = preg_match("/iP(hone|od|ad)/i", $_SERVER['HTTP_USER_AGENT']);
 		if ($iPhone == true){
 		  		$return .= '
-		<link rel="stylesheet" type="text/css" href="./_includes/css/site/iphone.css" media="screen" />		
+		<link rel="stylesheet" href="./_includes/css/site/iphone.css" media="screen" />		
 		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
 				';
 			}
@@ -225,7 +225,7 @@ class PageBuilder {
 		</script>
 
 	</head>
-	<body>
+	<body id="log-in">
 		<div id="wrapper">
 			<header>
 				<h1>Ghetto Blaster</h1>
@@ -271,5 +271,96 @@ class PageBuilder {
 		return $return;
 	
 	}
+	
+	
+	
+	
+		/**
+		 * Build the page
+		 */
+		function buildStatsPage($statTypes = array(), $statType = null, $stats = null) {
+
+			$return = '<!DOCTYPE html>
+	<html>
+		<head>
+			<title>Ghetto Blaster - Stats</title>	
+			<meta charset="UTF-8" />
+			<link rel="stylesheet" href="../_includes/css/site/screen.css" />
+
+			<link rel="shortcut icon" href="../_includes/icons/favicon.ico" type="image/x-icon" />
+			<link rel="icon" href="../_includes/icons/favicon.ico" type="image/x-icon" />
+			';
+
+			// mobile?
+			$iPhone = preg_match("/iP(hone|od)/i", $_SERVER['HTTP_USER_AGENT']);
+			$iP = preg_match("/iP(hone|od|ad)/i", $_SERVER['HTTP_USER_AGENT']);
+			$android = preg_match("/Android/i", $_SERVER['HTTP_USER_AGENT']);
+			if ($iPhone == true){
+			  		$return .= '
+			<link rel="stylesheet" href="../_includes/css/site/iphone.css" media="screen" />		
+			<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+					';
+				}
+
+			$return .= '		
+			<script src="http://www.google.com/jsapi"></script>
+			<script>
+				google.load("jquery", "1.4.2");
+			</script>
+			
+			<script src="../_includes/js/lib/swfobject/swfobject.js"></script>
+			<script src="../_includes/js/site/ghettoBlaster.js"></script>
+			<script src="../_includes/js/site/init.js"></script>
+		</head>
+		<body id="stats">
+			<div id="wrapper">
+				<header>
+					<h1>Ghetto Blaster</h1>
+					<p id="back"><a href="../">Back</a></p>
+				</header>
+
+
+				<div id="content">
+					<ul id="stat-types" class="clearfix">
+						<li>Stats:</li>
+					';
+					
+				foreach ($statTypes as $name => $method) {
+					$selected = ($statType == $name) ? ' class="selected"' : '';
+					
+					$return .= '
+						<li'.$selected.'><a href="./'.$name.'">'.ucfirst(str_replace('-', ' ', $name)).'</a></li>
+					';
+				}
+					
+					
+				$return .= '
+					</ul>
+					
+					<div id="stat-content">
+						<div id="graph"></div>
+						
+						<script> 
+				';
+							// var flashvars = {
+							// 	  data:"%7B%22title%22%3A%22%5Cu00bfCua%5Cu0301ntos+viven+en+la+misma+casa%3F%22%2C%22id%22%3A%22282%22%2C%22type%22%3A%22bar%22%2C%22orient%22%3A%22h%22%2C%22pMode%22%3Atrue%2C%22feliCat%22%3A%22family-and-friends%22%2C%22cats%22%3A%5B%226+o+ma%5Cu0301s%22%2C%225+personas%22%2C%224+personas%22%2C%223+personas%22%2C%222+personas%22%2C%22Vive+solo%22%5D%2C%22cats2%22%3A%5Bnull%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%5D%2C%22chartData%22%3A%5B%7B%22name%22%3A%22Muy+Felices%22%2C%22values%22%3A%5B2.8%2C6.7%2C27.4%2C29.4%2C28.5%2C5.1%5D%7D%2C%7B%22name%22%3A%22Poco+Felices%22%2C%22values%22%3A%5B1.7%2C14%2C23.3%2C19.8%2C26.7%2C14.5%5D%7D%5D%2C%22dSep%22%3A%22%2C%22%2C%22outOf%22%3Anull%7D"
+							// };
+				$return .= '
+				
+							var flashvars = { data: "'.$stats.'" };
+							var params = { 
+							  bgcolor: "#ffffff"
+							};
+							swfobject.embedSWF("../_includes/swf/graphinator.swf", "graph", "410", "600", "9.0.115.0", null, flashvars, params);
+						</script>
+					</div>
+				</div>
+			</div>
+	</body>
+	</html> 
+			';
+
+			return $return;
+		}
 	
 }

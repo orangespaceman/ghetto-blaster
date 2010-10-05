@@ -15,7 +15,7 @@ class Log {
 	/*
 	 *
 	 */
-	var $file = "../txt/log.txt";
+	var $file = null;
 	
 	
 	/*
@@ -27,8 +27,9 @@ class Log {
 	/*
 	 *
 	 */
-	function __construct($doLog) {
+	function __construct($doLog = null) {
 		$this->doLog = $doLog;
+		$this->file = dirname(__FILE__) . "/../txt/log.txt";
 	}
 	
 	
@@ -54,6 +55,14 @@ class Log {
 			// write current time, script name and message to the log file
 			fwrite($this->log, $user . " (" . $ip . ") " . $message . " - " . $time . "\n");
 		}
+	}
+	
+	
+	/*
+	 *
+	 */
+	public function getLog() {
+		return file($this->file);
 	}
 	
 	

@@ -557,6 +557,7 @@
 			top:0;
 			z-index:500;
 			width:100%;
+			min-height:50px;
 		}
 		
 		header h1 {
@@ -564,6 +565,17 @@
 			width:280px;
 			padding-top:13px;
 		}
+		
+		
+		/* header : back */
+			header p#back {
+				float:right;
+				padding:15px 10px 0 0;
+			}
+			
+			header p#back a {
+				color:#fff;
+			}
 		
 		
 		/* header : say */
@@ -738,3 +750,25 @@
 			padding-top:0.3em;
 			font-size:1.6em;
 		}
+
+
+	
+	/* stats */
+		#stats #content {
+			padding-top:75px;
+		}
+				
+		#stats #stat-types li {
+			float:left;
+			margin-right:10px;
+		}
+		
+		#stats #stat-types li a {
+			font-weight:normal;
+		}
+		
+		#stats #stat-types li.selected a {
+			font-weight:bold;
+		}
+		
+		

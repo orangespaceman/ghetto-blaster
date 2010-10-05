@@ -7,14 +7,17 @@
 	 */
 		$(document).ready(function() {
 		
+			$body = $("body");
+			
 			// add an extra class to the <body> element for JS-only styling
-			$("body").addClass("js");
+			$body.addClass("js");
 	
-			// init order by
-			ghettoBlaster.init({
-				ajaxPath: "./_includes/php/Ajax.php",
-				interval: 10
-			});
+			if ($body.attr('id') == "ghetto-blaster") {
+				ghettoBlaster.init({
+					ajaxPath: "./_includes/php/Ajax.php",
+					interval: 10
+				});
+			}
 		});
 
 
