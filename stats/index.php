@@ -22,8 +22,8 @@
 		$statType = $_GET['stattype'];
 		$stats = $statModel->getStats($statType);
 	} else {
-		$statType = null;
-		$stats = $statModel->getDefaultStats();
+		$statType = $statModel->getDefaultStatType();
+		$stats = $statModel->getStats($statType);
 	}
 
 	// start the page builder

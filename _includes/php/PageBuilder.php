@@ -348,12 +348,18 @@ class PageBuilder {
 				$return .= '
 				
 							var flashvars = { data: "'.$stats.'" };
+
 							var params = { 
 							  bgcolor: "#ffffff"
 							};
 							swfobject.embedSWF("../_includes/swf/graphinator.swf", "graph", "410", "600", "9.0.115.0", null, flashvars, params);
 						</script>
 					</div>
+					<pre>
+					';
+					//$return .= str_replace(",", ",\r",urldecode($stats));
+					$return .= '
+					</pre>
 				</div>
 			</div>
 	</body>
