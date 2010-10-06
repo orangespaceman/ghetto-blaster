@@ -20,7 +20,7 @@ class Stats {
 	protected $statTypes = array(
 		'top-tracks' => 'TopTracks',
 		'top-users' => 'TopUsers',
-//		'top-tracks-by-user' => 'TopTracksByUser',
+		'top-tracks-by-user' => 'TopTracksByUser',
 		'top-users-by-track' => 'TopUsersByTrack',
 //		'plays-by-month' =>'TopTracks',
 //		'top-tracks-by-month' => 'TopTracks',
@@ -306,5 +306,93 @@ class Stats {
 		
 		//
 		return $this->buildFlashVars($users, $categories, $categories2, 'Top Tracks By User');
+	}
+	
+	
+	/*
+	 * 
+	 */
+	protected function getTopTracksByUser() {
+		
+		$limit = 5;
+		
+		$users = array();
+		
+		// loop through all played tracks
+		foreach($this->log as $lineNum => $line) {
+			
+			// if the line refers to playing a track
+			if (strpos($line, "played the file '") !== false) {
+			
+				$user = substr($line, 0, strpos($line, ' '));
+				if (array_key_exists($user, $users)) {
+					$users[$user]++;
+				} else {
+					$users[$user] = 1;
+				}
+			}
+		}
+		
+		arsort($users);
+		$users = array_slice($users, 0, $limit);
+		$categories = array_keys($users);
+		$categories2 = array();
+		$categories2 = array_pad($categories2, $limit, null);
+
+		// got users, start on tracks
+		$tracks = array();
+
+
+		// loop through all played tracks
+		foreach($this->log as $lineNum => $line) {
+			
+			// if the line refers to playing a track
+			if (strpos($line, "played the file '") !== false) {
+			
+				// track is after `played the file '` until closing `'`
+				$start = strpos($line, "played the file '")+17;
+				$end = strpos($line, "' - ") - $start;
+				$track = substr($line, $start, $end);
+				$user = substr($line, 0, strpos($line, ' '));
+				
+				// if track is one of the top ones
+				if (in_array($user, $categories)) {
+
+					// if user doesn't exist, start them
+					if (!array_key_exists($track, $tracks)) {
+						$tracks[$track] = array();
+						$tracks[$track] = array_pad($tracks[$track], $limit, 0);						
+					}
+					
+					// get the track position in the categories array
+					$key = array_search($user, $categories);
+					$tracks[$track][$key]++;
+				}
+			}
+		}
+		
+		// compare the total values for the array to find the top tracks
+		function cmp($a, $b) {
+			$sumA = 0;
+			$sumB = 0;
+			foreach($a as $aVal) {
+				$sumA += $aVal;
+			}
+			foreach($b as $bVal) {
+				$sumB += $bVal;
+			}
+			if ($sumA == $sumB) {
+				return 0;
+			} else {
+				return ($sumA < $sumB) ? 1 : -1;
+			}
+		}
+		
+		
+		uasort($tracks, 'cmp');
+		$tracks = array_slice($tracks, 0, $limit);
+		
+		//
+		return $this->buildFlashVars($tracks, $categories, $categories2, 'Top Users By Track');
 	}
 }
