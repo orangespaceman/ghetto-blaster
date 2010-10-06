@@ -21,7 +21,7 @@ class Stats {
 		'top-tracks' => 'TopTracks',
 		'top-users' => 'TopUsers',
 //		'top-tracks-by-user' => 'TopTracksByUser',
-//		'top-users-by-track' => 'TopUsersByTrack',
+		'top-users-by-track' => 'TopUsersByTrack',
 //		'plays-by-month' =>'TopTracks',
 //		'top-tracks-by-month' => 'TopTracks',
 //		'top-users-by-month' => 'TopTracks'
@@ -115,10 +115,14 @@ class Stats {
 				'values' => array(),
 			);
 			//foreach($stats as $skey => $svalue){
-				$data['values'][] = $stat;
+				if (is_array($stat)) {
+					$data['values'] = $stat;
+				} else {
+					$data['values'][] = $stat;
+				}
 			//}
 			$chartData[] = $data;
-		}
+		}		
 		
 		
 		// select random styles
@@ -231,8 +235,11 @@ class Stats {
 	 * 
 	 */
 	protected function getTopUsersByTrack() {
+		
+		$limit = 7;
+		
+		
 		$tracks = array();
-		$users = array();
 		
 		// loop through all played tracks
 		foreach($this->log as $lineNum => $line) {
@@ -247,23 +254,57 @@ class Stats {
 				
 			
 				// condition : if track has already been added to the array, add count
-				if (!array_key_exists($track, $tracks)) {
-					$tracks[$track] = array();
+				if (array_key_exists($track, $tracks)) {
+					$tracks[$track]++;
+
+				// new track, add to array
+				} else {
+					$tracks[$track] = 1;
 				}
-				if (!array_key_exists($user, $tracks[$track])) {
-					if (count($tracks[$track]) < 2)
-					$tracks[$track][$user] = 0;
-				}
-				if (isset($tracks[$track][$user]))
-				$tracks[$track][$user]++;
 			}
 		}
 		
 		arsort($tracks);
-		$tracks = array_slice($tracks, 0, 10);
-		$categories = array('Top Tracks');
-		$categories2 = array(null);
+		$tracks = array_slice($tracks, 0, $limit);
+		$categories = array_keys($tracks);
+		$categories2 = array();
+		$categories2 = array_pad($categories2, $limit, null);
 
-		return $this->buildFlashVars($tracks, $categories, $categories2, 'Top Tracks By User');
+		// got tracks, start on users
+		$users = array();
+
+
+		// loop through all played tracks
+		foreach($this->log as $lineNum => $line) {
+			
+			// if the line refers to playing a track
+			if (strpos($line, "played the file '") !== false) {
+			
+				// track is after `played the file '` until closing `'`
+				$start = strpos($line, "played the file '")+17;
+				$end = strpos($line, "' - ") - $start;
+				$track = substr($line, $start, $end);
+				$user = substr($line, 0, strpos($line, ' '));
+				
+				// if track is one of the top ones
+				if (in_array($track, $categories)) {
+
+					// if user doesn't exist, start them
+					if (!array_key_exists($user, $users)) {
+						$users[$user] = array();
+						$users[$user] = array_pad($users[$user], $limit, 0);						
+					}
+					
+					// get the track position in the categories array
+					$key = array_search($track, $categories);
+					$users[$user][$key]++;
+				}
+			}
+		}
+		
+		$users = array_slice($users, 0, $limit);
+		
+		//
+		return $this->buildFlashVars($users, $categories, $categories2, 'Top Tracks By User');
 	}
 }
