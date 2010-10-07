@@ -268,7 +268,11 @@ class Stats {
 		$tracks = array_slice($tracks, 0, $limit);
 		$categories = array_keys($tracks);
 		$categories2 = array();
-		$categories2 = array_pad($categories2, $limit, null);
+		
+		$pad = count($tracks);
+		if ($pad > $limit) { $pad = $limit; }
+		
+		$categories2 = array_pad($categories2, $pad, null);
 
 		// got tracks, start on users
 		$users = array();
@@ -292,7 +296,7 @@ class Stats {
 					// if user doesn't exist, start them
 					if (!array_key_exists($user, $users)) {
 						$users[$user] = array();
-						$users[$user] = array_pad($users[$user], $limit, 0);						
+						$users[$user] = array_pad($users[$user], $pad, 0);						
 					}
 					
 					// get the track position in the categories array
@@ -337,7 +341,11 @@ class Stats {
 		$users = array_slice($users, 0, $limit);
 		$categories = array_keys($users);
 		$categories2 = array();
-		$categories2 = array_pad($categories2, $limit, null);
+		
+		$pad = count($users);
+		if ($pad > $limit) { $pad = $limit; }
+		
+		$categories2 = array_pad($categories2, $pad, null);
 
 		// got users, start on tracks
 		$tracks = array();
@@ -361,7 +369,7 @@ class Stats {
 					// if user doesn't exist, start them
 					if (!array_key_exists($track, $tracks)) {
 						$tracks[$track] = array();
-						$tracks[$track] = array_pad($tracks[$track], $limit, 0);						
+						$tracks[$track] = array_pad($tracks[$track], $pad, 0);						
 					}
 					
 					// get the track position in the categories array
