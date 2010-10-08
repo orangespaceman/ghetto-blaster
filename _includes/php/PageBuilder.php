@@ -352,7 +352,7 @@ class PageBuilder {
 							var params = { 
 							  bgcolor: "#ffffff"
 							};
-							swfobject.embedSWF("../_includes/swf/graphinator.swf", "graph", "410", "600", "9.0.115.0", null, flashvars, params);
+							swfobject.embedSWF("../_includes/swf/graphinator.swf", "graph", "410", "700", "9.0.115.0", null, flashvars, params);
 						</script>
 					</div>
 					<pre>
