@@ -18,6 +18,7 @@ class Stats {
 	 *
 	 */
 	protected $statTypes = array(
+		'latest-tracks' => 'latestTracks',
 		'top-tracks' => 'TopTracks',
 		'top-users' => 'TopUsers',
 		'top-tracks-by-user' => 'TopTracksByUser',
@@ -144,7 +145,22 @@ class Stats {
 		$data->dSep = '.';
 		$data->outOf = null;
 		
-		return urlencode(json_encode($data));
+		$json = urlencode(json_encode($data));
+		
+		
+		
+		return '
+				<div id="graph"></div>
+				
+				<script> 
+					var flashvars = { data: "'.$json.'" };
+
+					var params = { 
+					  bgcolor: "#ffffff"
+					};
+					swfobject.embedSWF("../_includes/swf/graphinator.swf", "graph", "410", "700", "9.0.115.0", null, flashvars, params);
+				</script>
+		';
 	}
 	
 	
@@ -226,6 +242,46 @@ class Stats {
 
 
 		return $this->buildFlashVars($users, $categories, $categories2, 'Top Users');
+	}
+	
+	
+	
+	/*
+	 * 
+	 */
+	protected function getLatestTracks() {
+
+		$tracks = "";
+		
+		$log = array_reverse($this->log);
+		$log = array_slice($log, 0, 30);
+		
+		
+		// loop through all played tracks
+		foreach($log as $lineNum => $line) {
+			
+			// if the line refers to playing a track
+			if (strpos($line, "played the file '") !== false) {
+			
+				// track is after `played the file '` until closing `'`
+				$start = strpos($line, "played the file '")+17;
+				$end = strpos($line, "' - ") - $start;
+				$track = substr($line, $start, $end);
+				$track = str_replace('/sfx', '', $track);
+				$track = str_replace('/', ' / ', $track);
+				$user = substr($line, 0, strpos($line, ' '));
+				$date = date('g:ia, l jS F Y', strtotime(substr($line, strpos($line, "' - ")+4)));
+				
+				$tracks .= '
+					<p class="track">
+						<strong>' . $track . '</strong>
+						<em>' . $user . '</em>
+						<span>' . $date . '</span>
+					</p>';
+			}
+		}
+		
+		return $tracks;		
 	}
 
 	

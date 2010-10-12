@@ -771,4 +771,23 @@
 			font-weight:bold;
 		}
 		
+		#stats p.track {
+			padding:10px;
+			background:#eee;
+			margin-bottom:10px;
+		}
 		
+		#stats p.track:nth-child(odd) {
+			background:#ddd;
+		}
+		
+		#stats p.track strong,
+		#stats p.track em,
+		#stats p.track span {
+			display:block;
+			margin-bottom:3px;
+		}
+		
+		#stats p.track strong {
+			font-size:2em;
+		}
