@@ -35,6 +35,8 @@
 			
 			$this->sendNotifications();
 			$this->log($this->messages[$type]['subject'].": ".$this->messages[$type]['message'], count($hosts));
+			
+			return 1;
 		}
 		
 
@@ -122,7 +124,7 @@
 			
 			$user = (isset($_SESSION['u'])) ? $_SESSION['u'] : "anon";
 			$log = fopen($logFile, 'a') or exit("Can't open $logFile!");
-			fwrite($log, $user." sent notification-> ".$notification." (to ".$hosts." hosts) /n");
+			fwrite($log, $user." sent notification-> ".$notification." (to ".$hosts." hosts) \n");
 		}
 		
 		

@@ -55,65 +55,82 @@ class PageBuilder {
 		<div id="wrapper">
 			<header>
 				<h1>Ghetto Blaster</h1>
-				<div id="say">
-					<form method="post" action="">
+				<div class="header-group">
+					<div id="say">
+						<form method="post" action="">
+							<fieldset>
+								<legend>Say</legend>
+								<div class="input-container clearfix">
+									<input type="text" class="text" id="say-text" name="say-text" />
+									<select name="voice" id="voice">
+										<optgroup label="Female">
+											<option>Agnes</option>
+											<option>Kathy</option>
+											<option>Princess</option>
+											<option>Vicki</option>
+											<option>Victoria</option>
+										</optgroup>                       
+										<optgroup label="Male">
+											<option selected="selected">Bruce</option>
+											<option>Fred</option>
+											<option>Junior</option>
+											<option>Ralph</option>
+										</optgroup>
+										<optgroup label="Novelty">
+											<option>Albert</option>
+											<option value=\'"Bad News"\'>Bad News</option>
+											<option>Bahh</option>
+											<option>Bells</option>
+											<option>Boing</option>
+											<option>Bubbles</option>
+											<option>Cellos</option>
+											<option>Deranged</option>
+											<option value=\'"Good News"\'>Good News</option>
+											<option>Hysterical</option>
+											<option value=\'"Pipe Organ"\'>Pipe Organ</option>
+											<option>Trinoids</option>
+											<option>Whisper</option>
+											<option>Zarvox</option>						
+										</optgroup>
+									</select>
+									<input type="submit" class="button" value="Say" />
+								</div>
+							</fieldset>
+						</form>
+					</div>
+					<div id="stop-holder">
+					</div>
+				</div>
+				
+				<div class="header-group">
+					<div id="notify">
+						<form id="notfiy-form" method="post" action="">
+							<select name="type">
+								<option>I\'m making tea</option>
+							</select>
+							<input type="submit" class="button" value="Notify" />
+						</form>
+					</div>
+				</div>
+				<div class="header-group-right">
+					<div id="volume" class="clearfix">
+						<ul class="horiznavlist clearfix">
+							<li class="first">Volume: <a id="volume-down" href="#">Down</a>
+							<li id="volume-level">'.$volume.'</li>
+							<li><a id="mute" href="#">Mute</a></li>
+							<li class="last"><a id="volume-up" href="#">Up</a>
+						</ul>
+					</div>
+					<form id="play-method" method="post" action="">
 						<fieldset>
-							<legend>Say</legend>
+							<legend>Play method</legend>
 							<div class="input-container clearfix">
-								<input type="text" class="text" id="say-text" name="say-text" />
-								<select name="voice" id="voice">
-									<optgroup label="Female">
-										<option>Agnes</option>
-										<option>Kathy</option>
-										<option>Princess</option>
-										<option>Vicki</option>
-										<option>Victoria</option>
-									</optgroup>                       
-									<optgroup label="Male">
-										<option selected="selected">Bruce</option>
-										<option>Fred</option>
-										<option>Junior</option>
-										<option>Ralph</option>
-									</optgroup>
-									<optgroup label="Novelty">
-										<option>Albert</option>
-										<option value=\'"Bad News"\'>Bad News</option>
-										<option>Bahh</option>
-										<option>Bells</option>
-										<option>Boing</option>
-										<option>Bubbles</option>
-										<option>Cellos</option>
-										<option>Deranged</option>
-										<option value=\'"Good News"\'>Good News</option>
-										<option>Hysterical</option>
-										<option value=\'"Pipe Organ"\'>Pipe Organ</option>
-										<option>Trinoids</option>
-										<option>Whisper</option>
-										<option>Zarvox</option>						
-									</optgroup>
-								</select>
-								<input type="submit" class="button" value="Say" />
+								<label for="play-broadcast">Broadcast <input type="radio" class="radio" name="play" id="play-broadcast" value="broadcast" checked="checked" /></label>
+								<label for="play-preview">Preview <input type="radio" class="radio" name="play" id="play-preview" value="preview" /></label>
 							</div>
 						</fieldset>
 					</form>
 				</div>
-				<div id="volume" class="clearfix">
-					<ul class="horiznavlist clearfix">
-						<li class="first">Volume: <a id="volume-down" href="#">Down</a>
-						<li id="volume-level">'.$volume.'</li>
-						<li><a id="mute" href="#">Mute</a></li>
-						<li class="last"><a id="volume-up" href="#">Up</a>
-					</ul>
-				</div>
-				<form id="play-method" method="post" action="">
-					<fieldset>
-						<legend>Play method</legend>
-						<div class="input-container clearfix">
-							<label for="play-broadcast">Broadcast <input type="radio" class="radio" name="play" id="play-broadcast" value="broadcast" checked="checked" /></label>
-							<label for="play-preview">Preview <input type="radio" class="radio" name="play" id="play-preview" value="preview" /></label>
-						</div>
-					</fieldset>
-				</form>
 			</header>
 			
 			

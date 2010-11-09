@@ -109,6 +109,11 @@ var ghettoBlaster = function(){
 			}
 		});
 		
+		$("#notify form input").bind('click', function(e){
+			e.preventDefault();
+			notify($(this).attr('value'));
+		});
+		
 		
 		// add stop button
 		addStop();
@@ -135,7 +140,7 @@ var ghettoBlaster = function(){
 		
 		// add stop
 		$('<a id="stop" href="#">Stop!</a>')
-			.appendTo("header")
+			.appendTo("#stop-holder")
 			.bind('click', function(e){
 				e.preventDefault();
 				this.blur();
@@ -315,6 +320,18 @@ var ghettoBlaster = function(){
 	var previewTrackStop = function() {
 		YAHOO.MediaPlayer.stop();
 	};
+	
+	/*
+	 *
+	 */
+	var notify = function(type){
+	
+		_ajax({
+			method: "notify",
+			params: type
+		});
+	}
+	
 
 	
 

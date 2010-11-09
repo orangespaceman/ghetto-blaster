@@ -9,11 +9,16 @@
 		
 		// import required files
 		require_once("./GhettoBlaster.php");
+		require_once("./class.growl.php");
 		require_once("./Log.php");
 
 		// start the ghetto blaster
 		$ghettoBlaster = new GhettoBlaster;
 		$ghettoBlaster->setPath($conf['paths']['sfx']);
+		
+		// start growl
+		$growl =  new Growl('test');
+	
 
 		// start the log (if required)
 		$log = new Log($conf['options']['logActions']);
@@ -72,6 +77,11 @@
 			case "say":
 				$result = $ghettoBlaster->say($_POST['say'], $_POST['voice']);
 				$log->logMessage("made the server say '" . $_POST['say'] . "'");
+				echo json_encode($result);
+			break;
+			
+			case "notify":
+				$result = $growl->notify(0);
 				echo json_encode($result);
 			break;
 		}

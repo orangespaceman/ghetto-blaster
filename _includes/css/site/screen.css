@@ -547,7 +547,6 @@
 		margin-bottom:-20px;
 	}
 	
-	
 	/* header */
 		header {
 			padding: 0;
@@ -564,6 +563,16 @@
 			float:left;
 			width:280px;
 			padding-top:13px;
+		}
+		
+		header .header-group{
+			float:left;
+			padding:5px 10px 5px 10px;
+		}
+
+		header .header-group-right{
+			float:right;
+			padding:5px 10px 5px 10px;
 		}
 		
 		
@@ -594,13 +603,33 @@
 				padding-top:4px;
 				padding-bottom:4px;
 			}
+			
+			header #stop-holder{
+				float:left;
+			}
+		
+		/* header : notify block */
+			header #notify {
+				float:left;
+				padding:12px 10px;
+				margin-left:20px;
+			}
+			
+			header #notify select{
+				float:left;
+				padding-top:4px;
+				padding-bottom:4px;
+			}
+			
+			header #notify input{
+				margin-left	:5px;
+			}
 		
 		
 		/* header : vol block */
 			header #volume {
-				float:right;
 				width:220px;
-				padding:5px 10px 5px 10px;
+				
 			}
 			
 			header #volume a {
@@ -629,7 +658,7 @@
 		
 		/* header : play control block */
 			header form#play-method {
-				float:right;
+				
 				clear:right;
 				width:220px;
 				padding:0 10px 10px 0;
