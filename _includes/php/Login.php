@@ -11,11 +11,17 @@
 				if ($_POST['u'] == $username && $_POST['p'] == $password) {
 					$_SESSION['u'] = $_POST['u'];
 					$_SESSION['p'] = $_POST['p'];
+					
+					//Update users growl details
+					require_once('class.growl.php');
+					Growl::updateIP($_SESSION['u']);
+					
 					return true;
+					
 				}
 			}
 		}
-
+	
 		// condition : if logged in already, double-check...
 		if (isset($_SESSION) && count($_SESSION) > 0) {
 			foreach($login as $username => $password) {

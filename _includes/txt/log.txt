@@ -1,4 +1,4 @@
 pete (192.168.0.7) made the server say 'Hello!' - 2010-08-06 12:54:01
 pete (fe80::226:8ff:fe04:bcee) played the file '/animals/bee.mp3' - 2010-08-06 12:58:06
 michael (fe80::61e:64ff:feea:c2d9) played the file '/alan-partridge/jurassic-park.mp3' - 2010-08-06 13:17:25
-pete (192.168.0.7) played the file '/sfx/wolfmother-scream.mp3' - 2010-10-05 09:15:08
+pete (192.168.0.7) played the file '/sfx/wolfmother-scream.mp3' - 2010-10-05 09:15:08pete (192.168.0.6) hit stop - 2010-11-04 16:39:39
