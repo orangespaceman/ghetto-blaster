@@ -112,6 +112,9 @@ class PageBuilder {
 						</form>
 					</div>
 				</div>
+				<div id="notify-prefs">
+					<p><a href="#">Edit notify preferences</a></p>
+				</div>
 				<div class="header-group-right">
 					<div id="volume" class="clearfix">
 						<ul class="horiznavlist clearfix">

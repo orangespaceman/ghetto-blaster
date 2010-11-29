@@ -17,7 +17,7 @@
 		$ghettoBlaster->setPath($conf['paths']['sfx']);
 		
 		// start growl
-		$growl =  new Growl('test');
+		$growl =  new Growl('test', $_SESSION['u']);
 	
 
 		// start the log (if required)

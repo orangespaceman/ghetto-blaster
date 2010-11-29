@@ -10,12 +10,13 @@
 		private $password;
 		private $users;
 		private $messages;
+		private $currentUser;
 		
-		
-        public function __construct($password = '')
+        public function __construct($password = '', $currentUser = '')
         {
             $this->notifications 	= array();
 			$this->password 	 	= $password;
+			$this->currentUser		= $currentUser;
 			$this->loadConfig();
 					
         }
@@ -27,7 +28,7 @@
 			foreach($this->users as $user){
 				//Does the user subscribe to this type of notification.
 				if($user['permission'][$type] == 1){
-					$this->addNotification($user['host'], $this->messages[$type]['subject'], $this->messages[$type]['message']);
+					$this->addNotification($user['host'], $this->messages[$type]['subject'], str_replace('{sender}', ucfirst($this->currentUser), $this->messages[$type]['message']) );
 					$hosts[] = $user['host'];
 				}
 			}
@@ -41,7 +42,7 @@
 		
 
 		private function addNotification($host, $subject, $message){
-			$this->notifications[] = $host." '".$subject."' '".$message."' ".$this->password."";
+			$this->notifications[] = escapeshellarg($host)." ".escapeshellarg($subject)." ".escapeshellarg($message)." ".escapeshellarg($this->password)."";
 		}
 		
 		public function sendNotifications(){
@@ -58,7 +59,7 @@
 				return false;
 			}
 			
-			//echo $output;
+
 		}
 		
 		private function loadConfig(){
@@ -156,6 +157,15 @@
 			
 			$uString = implode("|", $uArr);
 			fwrite($userFile, $uString);
+		}
+		
+		public static function updateUserPrefs($userName, $prefs){
+			$growl = new Growl('');
+			$user = $growl->getUserByName($userName);
+			
+			$user['permission'] = $prefs;
+			$growl->updateUserDetails($user);
+			
 		}
 				
 		

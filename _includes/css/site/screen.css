@@ -624,6 +624,15 @@
 			header #notify input{
 				margin-left	:5px;
 			}
+			
+			header #notify-prefs a{
+				float:left;
+				color:#FFFFFF;
+				display:block;
+				font-size:1em;
+				margin-top:15px;
+				overflow:hidden;
+			}
 		
 		
 		/* header : vol block */
