@@ -829,3 +829,39 @@
 		#stats p.track strong {
 			font-size:2em;
 		}
+		
+		/* Notify Prefs */
+		#prefs-form .input-row{
+			clear:both;
+			display:block;
+			overflow:hidden;
+			margin-top:5px;
+		}
+		
+		#prefs-form input, #prefs-form label{
+			float:left;
+		}
+		.notify-prefs{
+			margin:20px;
+		}
+		.pref-text{
+			clear:both;
+			margin-top:20px;
+		}
+		.pref-text img{
+			border:1px solid #ccc;
+		}
+		.pref-text p{
+			margin-bottom:15px;
+			font-size:1.3em;
+		}
+		.pref-border{
+			border:1px solid #ccc;
+			background:#ccc;
+			padding:10px;
+			width:600px;
+		}
+		
+		.clear{
+			clear:both;
+		}

@@ -63,10 +63,10 @@
 		}
 		
 		private function loadConfig(){
-			$users = file(dirname(__FILE__) .Growl::USERS_FILE);
-			//$usersArr = explode('|',$users);
+			$users = file_get_contents(dirname(__FILE__) .Growl::USERS_FILE);
+			$usersArr = explode('|',$users);
 
-			foreach($users as $user){
+			foreach($usersArr as $user){
 				if(!empty($user)){
 					$a = explode(',' ,$user);
 					$this->users[] = array( 
@@ -129,18 +129,10 @@
 		}
 		
 		
-		public function updateUserDetails($u){
-		
-			$updateKey;
+		public function updateUserDetails($user){
 			
-			foreach($this->users as $key => $user){
-				
-				if($u['username'] == $user['username']){
-					$updateKey = $key;
-				}
-			}
-			echo $updateKey;
-			$this->users[$updateKey] = $u;
+			$key = array_search($user['username'], $this->users);
+			$this->users[$key] = $user;
 			$this->saveUserDetails();
 		}
 		
@@ -163,7 +155,7 @@
 				$uArr[] = $user['username'].",".$user['host'].",".implode(":", $user['permission']);
 			}
 			
-			$uString = implode("\n", $uArr);
+			$uString = implode("|", $uArr);
 			fwrite($userFile, $uString);
 		}
 		
@@ -173,24 +165,18 @@
 			
 			$permissions = $user['permission'];
 			$newPermission =  Array();
-				
-		//	var_dump($prefs);
+
 			foreach($permissions as $k => $v) {
-				$i = 0;
+				$v = 0;
 				
-				var_dump($prefs);
 				foreach($prefs as $pref){
-				
-					if($k == $pref){
-						$i = 1;
-						
+					if($k == $pref && $pref != ""){
+						$v = 1;
 					}
-				
 				}
 
-				$newPermission[$k] = $i;
+				$newPermission[$k] = $v;
 			}
-			var_dump($newPermission);
 
 			$user['permission'] = $newPermission;
 			
@@ -219,15 +205,15 @@
 			}
 			
 			//Make sure IP is unique
-			//$allUsers = $growl->getUsers();
-			//foreach($allUsers as $u){
+			$allUsers = $growl->getUsers();
+			foreach($allUsers as $u){
 				
-			//	if($u['host'] == $_SERVER['REMOTE_ADDR']){
-					//echo $u['host'];
-		//			$u['host'] = '0.0.0.0';
-		//			$growl->updateUserDetails($user);
-		//		}
-		//	}
+				if($u['host'] == $_SERVER['REMOTE_ADDR']){
+					echo $u['host'];
+					$u['host'] = '0.0.0.0';
+					$growl->updateUserDetails($user);
+				}
+			}
 		
 		}
 						

@@ -111,7 +111,26 @@ var ghettoBlaster = function(){
 		
 		$("#notify form input").bind('click', function(e){
 			e.preventDefault();
-			notify($(this).attr('value'));
+			
+			notify($("#notify-opt option:selected").val());
+		});
+		
+		$("#notify-prefs a").bind('click', function(e){
+			e.preventDefault();
+			notifyPrefsPopup();
+		});
+		
+		$("#prefs-form").bind('submit', function(e){
+			e.preventDefault();
+			
+			var checked ="";
+			
+			$('#prefs-form input[type="checkbox"]:checked').each(function(){
+				checked += $(this).val()+",";
+			});
+			checked = checked.substring(0, checked.length-1);
+					
+			updatePrefs(checked);
 		});
 		
 		
@@ -328,11 +347,34 @@ var ghettoBlaster = function(){
 	
 		_ajax({
 			method: "notify",
-			params: type
+			params: "type="+type
 		});
 	}
 	
-
+	/*
+	*
+	*/
+	
+	var notifyPrefsPopup = function(){
+		window.open('/notify-prefs.php', 'Notify Preferences', 'width=800, height=600', 'location=no');
+	}
+	
+	/*
+	*
+	*/
+	var updatePrefs = function(checked){
+		
+		if(checked != ""){
+			_ajax({
+				method: "updatePref",
+				params: "checked="+checked
+			})
+		}else{
+			_ajax({
+				method: "updatePref",
+			})
+		}
+	}
 	
 
 	/**

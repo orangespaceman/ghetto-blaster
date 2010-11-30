@@ -1,8 +1,10 @@
 <?php
 	// import ghetto blaster files
+	require_once("./_includes/php/Growl.php");
 	require_once("./_includes/php/Login.php");
 	require_once("./_includes/php/GhettoBlaster.php");
 	require_once("./_includes/php/PageBuilder.php");
+	
 
 	// start the page builder
 	$page = new PageBuilder();

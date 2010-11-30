@@ -9,7 +9,7 @@
 		
 		// import required files
 		require_once("./GhettoBlaster.php");
-		require_once("./class.growl.php");
+		require_once("./Growl.php");
 		require_once("./Log.php");
 
 		// start the ghetto blaster
@@ -17,7 +17,7 @@
 		$ghettoBlaster->setPath($conf['paths']['sfx']);
 		
 		// start growl
-		$growl =  new Growl('test', $_SESSION['u']);
+		$growl =  new Growl('rumfest', $_SESSION['u']);
 	
 
 		// start the log (if required)
@@ -81,8 +81,18 @@
 			break;
 			
 			case "notify":
-				$result = $growl->notify(0);
+				$result = $growl->notify($_POST['type']);
 				echo json_encode($result);
+			break;
+			
+			case "updatePref":
+				if(isset($_POST['checked'])){
+					$checked = explode(",", $_POST['checked']);
+				}else{
+					$checked = array();
+				}
+				$result = $growl->updateUserPrefs($_SESSION['u'], $checked );
+				echo json_decode($result);
 			break;
 		}
 	}

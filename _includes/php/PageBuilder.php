@@ -17,7 +17,11 @@ class PageBuilder {
 	 * Build the page
 	 */
 	function buildPage($files, $volume) {
-
+		
+		require_once('Growl.php');
+		$growl = new Growl('');
+		$messages = $growl->getMessages();
+		
 		$return = '<!DOCTYPE html>
 <html>
 	<head>
@@ -104,9 +108,19 @@ class PageBuilder {
 				
 				<div class="header-group">
 					<div id="notify">
-						<form id="notfiy-form" method="post" action="">
-							<select name="type">
-								<option>I\'m making tea</option>
+					<form id="notfiy-form" method="post" action="">
+						<select name="type" id="notify-opt">';
+					foreach($messages as $message){
+						if($message['id'] == 0){
+							$return .= '<option selected="selected" value="'.$message['id'].'">'.$message['subject'].'</option>';
+						}else{
+							$return .= '<option value="'.$message['id'].'">'.$message['subject'].'</option>';
+						}
+						
+					}
+						
+							
+						$return .= '	
 							</select>
 							<input type="submit" class="button" value="Notify" />
 						</form>

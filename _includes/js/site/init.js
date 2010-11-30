@@ -11,7 +11,7 @@
 			
 			// add an extra class to the <body> element for JS-only styling
 			$body.addClass("js");
-	
+			
 			if ($body.attr('id') == "ghetto-blaster") {
 				ghettoBlaster.init({
 					ajaxPath: "./_includes/php/Ajax.php",

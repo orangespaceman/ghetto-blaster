@@ -13,7 +13,7 @@
 					$_SESSION['p'] = $_POST['p'];
 					
 					//Update users growl details
-					require_once('class.growl.php');
+				
 					Growl::updateIP($_SESSION['u']);
 					
 					return true;

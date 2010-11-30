@@ -1,1 +1,1 @@
-0,I'm making tea,{sender} is making tea|1,yum,yum
+0,I'm making tea,{sender} is making tea|1,To the pub!,{sender} wants to go to the pub. Coming?|2,Nelson, {sender} wants to goto the Nelson. Coming?
