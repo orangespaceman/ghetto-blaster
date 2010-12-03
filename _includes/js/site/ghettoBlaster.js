@@ -291,6 +291,9 @@ var ghettoBlaster = function(){
 				if (!!opts.update) {
 					opts.update.text(result.volume);
 				}
+				if(opts.callback) {
+					opts.callback();
+				}
 				
 				hideLoader();
 
@@ -345,6 +348,12 @@ var ghettoBlaster = function(){
 	 */
 	var notify = function(type){
 	
+		$('#notify-button').attr("disabled", "disabled").fadeTo('fast', 0.3);
+	
+		setTimeout(function(){
+			$('#notify-button').removeAttr('disabled').fadeTo('fast', 1);
+		}, 5000);
+		
 		_ajax({
 			method: "notify",
 			params: "type="+type
@@ -367,13 +376,22 @@ var ghettoBlaster = function(){
 		if(checked != ""){
 			_ajax({
 				method: "updatePref",
-				params: "checked="+checked
+				params: "checked="+checked,
+				callback: prefsupdated
 			})
 		}else{
 			_ajax({
 				method: "updatePref",
+				callback: prefsupdated
 			})
 		}
+	}
+	
+	var prefsupdated = function(){
+		$('.message').fadeIn('slow');
+		setTimeout(function(){
+			$('.message').fadeOut('slow');
+		}, 2000);
 	}
 	
 

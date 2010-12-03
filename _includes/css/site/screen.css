@@ -831,6 +831,11 @@
 		}
 		
 		/* Notify Prefs */
+		.header-group-bottom{
+		clear: both;
+	    margin: 0 0 0 289px;
+		}
+	
 		#prefs-form .input-row{
 			clear:both;
 			display:block;
@@ -861,7 +866,21 @@
 			padding:10px;
 			width:600px;
 		}
+<<<<<<< Updated upstream
 		
+		.disbaled{
+			opacity:0.5;
+=======
+		.message{
+			display:none;
+			height:20px;
+			padding:15px;
+			width:600px;
+			background:#cfeed9;
+			border:1px solid #ccc;
+			font-size:1.5em;
+>>>>>>> Stashed changes
+		}
 		.clear{
 			clear:both;
 		}

@@ -106,29 +106,7 @@ class PageBuilder {
 					</div>
 				</div>
 				
-				<div class="header-group">
-					<div id="notify">
-					<form id="notfiy-form" method="post" action="">
-						<select name="type" id="notify-opt">';
-					foreach($messages as $message){
-						if($message['id'] == 0){
-							$return .= '<option selected="selected" value="'.$message['id'].'">'.$message['subject'].'</option>';
-						}else{
-							$return .= '<option value="'.$message['id'].'">'.$message['subject'].'</option>';
-						}
-						
-					}
-						
-							
-						$return .= '	
-							</select>
-							<input type="submit" class="button" value="Notify" />
-						</form>
-					</div>
-				</div>
-				<div id="notify-prefs">
-					<p><a href="#">Edit notify preferences</a></p>
-				</div>
+			
 				<div class="header-group-right">
 					<div id="volume" class="clearfix">
 						<ul class="horiznavlist clearfix">
@@ -148,6 +126,30 @@ class PageBuilder {
 						</fieldset>
 					</form>
 				</div>
+					<div class="header-group-bottom">
+						<div id="notify">
+						<form id="notfiy-form" method="post" action="">
+							<select name="type" id="notify-opt">';
+						foreach($messages as $message){
+							if($message['id'] == 0){
+								$return .= '<option selected="selected" value="'.$message['id'].'">'.$message['subject'].'</option>';
+							}else{
+								$return .= '<option value="'.$message['id'].'">'.$message['subject'].'</option>';
+							}
+
+						}
+
+
+							$return .= '	
+								</select>
+								<input type="submit" class="button" value="Notify" id="notify-button"/>
+							</form>
+						</div>
+						<div id="notify-prefs">
+							<p><a href="#">Edit notify preferences</a></p>
+						</div>
+					</div>
+					
 			</header>
 			
 			

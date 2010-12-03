@@ -18,7 +18,7 @@
 			$this->password 	 	= $password;
 			$this->currentUser		= $currentUser;
 			$this->loadConfig();
-					
+			
         }
 		
 		public function notify($type){
@@ -64,34 +64,66 @@
 		
 		private function loadConfig(){
 			$users = file(dirname(__FILE__) .Growl::USERS_FILE);
-			//$usersArr = explode('|',$users);
 
 			foreach($users as $user){
 				if(!empty($user)){
 					$a = explode(',' ,$user);
+					
+					$permissions = explode(":",$a[2]);
+					foreach($permissions as $key => $perm){
+						$permissions[$key] = intval($perm);
+					}
 					$this->users[] = array( 
 									'username'	=> $a[0],
 									'host' 		=> $a[1],
-									'permission'=> explode(":",$a[2])
+									'permission'=> $permissions
 									);
+					
+					
 				}
 
 			}
 
-			$mess = file_get_contents(dirname(__FILE__) .Growl::MESSAGES_FILE);
-			$messArr = explode('|',$mess);
-			
-			foreach($messArr as $message){
+			$mess = file(dirname(__FILE__) .Growl::MESSAGES_FILE);
+
+			foreach($mess as $message){
 				if(!empty($message)){
 					$m = explode(",", $message);
 					$this->messages[] = array(
-											'id'  => $m[0],
+											'id'  => intval($m[0]),
 											'subject' =>$m[1],
 											'message' =>$m[2]
 											);
 				}
 			}
-
+			
+			$this->verifyPermissions();
+		}
+		
+		private function verifyPermissions(){
+			foreach($this->users as $key => $user){
+				if(count($user['permission']) < count($this->messages)){
+					
+					foreach($this->messages as $pkey => $message){
+							if(!isset($user['permission'][$pkey])){
+								$user['permission'][$pkey] = 0;
+							}
+					}
+				}
+				
+				if(count($user['permission']) > count($this->messages)){
+					foreach($user['permission'] as $mkey => $per){
+						if(!isset($this->messages[$mkey])){
+							unset($user['permission'][$mkey]);
+						}
+					}
+				}
+				
+				$this->users[$key] = $user;
+			}
+			
+			$this->saveUserDetails();
+			
 		}
 		
 		public function clearNotification(){
@@ -139,7 +171,7 @@
 					$updateKey = $key;
 				}
 			}
-			echo $updateKey;
+		//	echo $updateKey;
 			$this->users[$updateKey] = $u;
 			$this->saveUserDetails();
 		}
@@ -158,11 +190,15 @@
 			
 			$userFile = fopen( dirname(__FILE__).Growl::USERS_FILE, 'w+')  or exit("Can't open ".$dirname(__FILE__).Growl::USERS_FILE."!");
 			
-
+		
 			foreach($this->users as $user){
-				$uArr[] = $user['username'].",".$user['host'].",".implode(":", $user['permission']);
+				
+				foreach($user['permission'] as $key => $permission){
+					$user['permission'][$key] = rtrim($permission);
+				}	
+				$uArr[] = rtrim($user['username'].",".$user['host'].",".implode(":", $user['permission']));
 			}
-			
+
 			$uString = implode("\n", $uArr);
 			fwrite($userFile, $uString);
 		}
@@ -178,7 +214,7 @@
 			foreach($permissions as $k => $v) {
 				$i = 0;
 				
-				var_dump($prefs);
+			
 				foreach($prefs as $pref){
 				
 					if($k == $pref){
@@ -190,7 +226,7 @@
 
 				$newPermission[$k] = $i;
 			}
-			var_dump($newPermission);
+			//var_dump($newPermission);
 
 			$user['permission'] = $newPermission;
 			

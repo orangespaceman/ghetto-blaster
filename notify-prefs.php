@@ -25,7 +25,7 @@ session_start();
 	$growl = new Growl('');
 	$messages = $growl->getMessages();
 	$user = $growl->getUserByName($_SESSION['u']);
-	
+	//var_dump($user['permission']);
 	//var_dump($user);
 ?>
 <body id='ghetto-blaster' class='notify-prefs'>
@@ -34,12 +34,15 @@ session_start();
 <p><strong>Hello <?php echo $user['username'];?> your IP is logged as:</strong> <?php echo $user['host'];?></p>
 <p>Tick which notifications you would like to receive</p>
 </div>
+<div class='message'>
+	Your preferences have been updated
+</div>
 <form action='' method='post' id='prefs-form' class='clear'>
 		<?php
 		
 		foreach ($messages as $message){
 			if($user['permission'][$message['id']]){
-				echo '<div class="input-row"><input type="checkbox" value="'.$message['id'].'" checked="checked" name="permission"/><label for="'.$message['subject'].'">'.$message['subject'].'</label></div>'."\n";
+				echo '<div class="input-row"><input type="checkbox" id="'.$message['subject'].'" value="'.$message['id'].'" checked="checked" name="permission"/><label for="'.$message['subject'].'">'.$message['subject'].'</label></div>'."\n";
 			}else{
 				echo '<div class="input-row"><input type="checkbox" value="'.$message['id'].'" name="permission"/><label for="'.$message['subject'].'">'.$message['subject'].'</label></div>'."\n";
 			}
