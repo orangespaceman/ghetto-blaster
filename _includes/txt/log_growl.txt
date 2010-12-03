@@ -83,3 +83,5 @@ matt sent notification-> To the pub!: {sender} wants to goto the pub. Are you co
 matt sent notification-> To the pub!: {sender} wants to goto the pub. Coming? (to 3 hosts) 
 matt sent notification-> To the pub!: {sender} wants to goto the pub. Coming? (to 3 hosts) 
 pete sent notification-> To the pub!: {sender} wants to goto the pub. Coming? (to 3 hosts) 
+matt sent notification-> To the pub!: {sender} wants to go to the pub. Coming?
+ (to 1 hosts) 

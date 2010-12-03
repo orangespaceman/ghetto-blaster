@@ -572,6 +572,7 @@
 
 		header .header-group-right{
 			float:right;
+			width:215px;
 			padding:5px 10px 5px 10px;
 		}
 		
@@ -866,11 +867,7 @@
 			padding:10px;
 			width:600px;
 		}
-<<<<<<< Updated upstream
-		
-		.disbaled{
-			opacity:0.5;
-=======
+
 		.message{
 			display:none;
 			height:20px;
@@ -879,7 +876,6 @@
 			background:#cfeed9;
 			border:1px solid #ccc;
 			font-size:1.5em;
->>>>>>> Stashed changes
 		}
 		.clear{
 			clear:both;

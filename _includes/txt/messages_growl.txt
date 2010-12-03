@@ -1,7 +1,3 @@
 0,I'm making tea,{sender} is making tea
 1,To the pub!,{sender} wants to go to the pub. Coming?
-<<<<<<< Updated upstream
 2,Nelson, {sender} wants to goto the Nelson. Coming?
-=======
-2,Nelson, {sender} wants to go to the Nelson. Coming?
->>>>>>> Stashed changes
