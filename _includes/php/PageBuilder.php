@@ -16,7 +16,7 @@ class PageBuilder {
 	/**
 	 * Build the page
 	 */
-	function buildPage($files, $volume) {
+	function buildPage($files, $volume, $notify) {
 		
 		require_once('Growl.php');
 		$growl = new Growl('');
@@ -125,11 +125,15 @@ class PageBuilder {
 							</div>
 						</fieldset>
 					</form>
-				</div>
+				</div>';
+				//Only show notify bits if set in options
+				if($notify){
+					$return .= '
 					<div class="header-group-bottom">
 						<div id="notify">
 						<form id="notfiy-form" method="post" action="">
 							<select name="type" id="notify-opt">';
+							
 						foreach($messages as $message){
 							if($message['id'] == 0){
 								$return .= '<option selected="selected" value="'.$message['id'].'">'.$message['subject'].'</option>';
@@ -148,8 +152,10 @@ class PageBuilder {
 						<div id="notify-prefs">
 							<p><a href="#">Edit notify preferences</a></p>
 						</div>
-					</div>
+					</div>';
+				}
 					
+				$return .= '	
 			</header>
 			
 			

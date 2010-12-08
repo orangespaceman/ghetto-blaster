@@ -32,4 +32,4 @@
 	$files = $ghettoBlaster->createFileList();
 
 	// build page
-	echo $page->buildPage($files, $ghettoBlaster->volume);
+	echo $page->buildPage($files, $ghettoBlaster->volume, $conf['options']['shownotify']);

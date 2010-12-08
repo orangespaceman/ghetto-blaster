@@ -11,6 +11,8 @@ doLogin = true
 ; log all interactions?
 logActions = true
 
+; show growl noticaitons
+shownotify = true
 
 ; paths to site files
 [paths]
