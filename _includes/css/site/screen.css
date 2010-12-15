@@ -693,14 +693,14 @@
 	
 	/* content */
 		#content {
-			padding:0 10px 10px 10px;
+			padding:31px 10px 10px 10px;
 			margin-left:160px;
 		}
 		
 		#content .folder-container {
 			position:relative;
-			padding-top:75px;
-			margin-bottom:-75px;
+			padding-top:100px;
+			margin-bottom:-100px;
 		}
 
 		#content .folder {
@@ -747,7 +747,7 @@
 		#keys {
 			position:fixed;
 			left:10px;
-			top:75px;
+			top: 130px;
 			z-index:499;
 			padding:5px;
 			background:#ccc;
