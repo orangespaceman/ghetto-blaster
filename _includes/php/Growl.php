@@ -242,6 +242,14 @@
 			$growl = new Growl('');
 			$user = $growl->getUserByName($userName);
 			
+			//Check IP is ipv4
+			if(preg_match('/\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/', $_SERVER['REMOTE_ADDR'])){
+				$ip = $_SERVER['REMOTE_ADDR'];
+			}else{
+				$ip = gethostbyname(gethostbyaddr($_SERVER['REMOTE_ADDR']));
+			}
+			
+			
 			if($user){
 				//update
 				if($user['host'] != $_SERVER['REMOTE_ADDR']){
