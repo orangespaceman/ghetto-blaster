@@ -693,7 +693,7 @@
 	
 	/* content */
 		#content {
-			padding:0 10px 10px 10px;
+			padding:31px 10px 10px 10px;
 			margin-left:160px;
 		}
 		
@@ -747,7 +747,7 @@
 		#keys {
 			position:fixed;
 			left:10px;
-			top:75px;
+			top: 130px;
 			z-index:499;
 			padding:5px;
 			background:#ccc;
