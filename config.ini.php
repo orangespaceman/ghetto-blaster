@@ -12,13 +12,13 @@ doLogin = true
 logActions = true
 
 ; show growl noticaitons
-shownotify = true
+shownotify = false
 
 ; paths to site files
 [paths]
 
 ; path to sound clips
-sfx = "/Users/pete/Dropbox/ghetto-blaster/sfx/"
+sfx = "/Users/pete/Dropbox/_me/ghetto-blaster/sfx/"
 
 
 ; user array (if login is required)
