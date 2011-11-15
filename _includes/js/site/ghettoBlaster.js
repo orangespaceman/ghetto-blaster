@@ -270,7 +270,7 @@ var ghettoBlaster = function(){
 	
 		showLoader();
 		
-		var postData, response;
+		var postData, response, path;
 
 		postData = 'method='+opts.method;
 
@@ -279,10 +279,12 @@ var ghettoBlaster = function(){
 		}
 
 		postData += '&random='+Math.random();
+		
+		path = opts.path || options.ajaxPath;
 
 		// submit request
 		response = $.post(
-			options.ajaxPath,
+			path,
 			postData,
 			function(data, textStatus){
 
@@ -343,8 +345,10 @@ var ghettoBlaster = function(){
 		YAHOO.MediaPlayer.stop();
 	};
 	
+	
+	
 	/*
-	 *
+	 * Matt's crap from here downwards...
 	 */
 	var notify = function(type){
 	
@@ -358,15 +362,15 @@ var ghettoBlaster = function(){
 			method: "notify",
 			params: "type="+type
 		});
-	}
+	};
 	
 	/*
 	*
 	*/
 	
 	var notifyPrefsPopup = function(){
-		window.open('/notify-prefs.php', 'Notify Preferences', 'width=800, height=600', 'location=no');
-	}
+		window.open('./notify-prefs/', 'Notify Preferences', 'width=800, height=600', 'location=no');
+	};
 	
 	/*
 	*
@@ -377,22 +381,24 @@ var ghettoBlaster = function(){
 			_ajax({
 				method: "updatePref",
 				params: "checked="+checked,
-				callback: prefsupdated
-			})
+				callback: prefsupdated,
+				path: "../_includes/php/Ajax.php"
+			});
 		}else{
 			_ajax({
 				method: "updatePref",
-				callback: prefsupdated
-			})
+				callback: prefsupdated,
+				path:"../_includes/php/Ajax.php"
+			});
 		}
-	}
+	};
 	
 	var prefsupdated = function(){
 		$('.message').fadeIn('slow');
 		setTimeout(function(){
 			$('.message').fadeOut('slow');
 		}, 2000);
-	}
+	};
 	
 
 	/**

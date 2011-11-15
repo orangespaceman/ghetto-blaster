@@ -37,11 +37,15 @@ class PageBuilder {
 		$iPhone = preg_match("/iP(hone|od)/i", $_SERVER['HTTP_USER_AGENT']);
 		$iP = preg_match("/iP(hone|od|ad)/i", $_SERVER['HTTP_USER_AGENT']);
 		$android = preg_match("/Android/i", $_SERVER['HTTP_USER_AGENT']);
-		if ($iPhone == true){
+		if ($iPhone == true || $android == true){
 		  		$return .= '
 		<link rel="stylesheet" type="text/css" href="./_includes/css/site/iphone.css" media="screen" />		
 		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
-				';
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-startup-image" href="./_includes/img/site/ghetto-blaster.png" />
+    <link rel="apple-touch-icon-precomposed" href="./_includes/img/site/gb.png" />
+    ';
 			}
 		
 		$return .= '		
@@ -49,6 +53,8 @@ class PageBuilder {
 		<script>
 			google.load("jquery", "1.4.2");
 		</script>
+		
+		
 
 		<script src="http://mediaplayer.yahoo.com/js"></script>
 
@@ -253,11 +259,15 @@ class PageBuilder {
 		// iphone?
 		$iPhone = preg_match("/iP(hone|od)/i", $_SERVER['HTTP_USER_AGENT']);
 		$iP = preg_match("/iP(hone|od|ad)/i", $_SERVER['HTTP_USER_AGENT']);
-		if ($iPhone == true){
+		if ($iPhone == true || $android == true){
 		  		$return .= '
 		<link rel="stylesheet" href="./_includes/css/site/iphone.css" media="screen" />		
 		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
-				';
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-startup-image" href="./_includes/img/site/ghetto-blaster.png" />
+    <link rel="apple-touch-icon-precomposed" href="./_includes/img/site/gb.png" />
+';
 			}
 
 		$return .= '		
@@ -337,7 +347,7 @@ class PageBuilder {
 		$iPhone = preg_match("/iP(hone|od)/i", $_SERVER['HTTP_USER_AGENT']);
 		$iP = preg_match("/iP(hone|od|ad)/i", $_SERVER['HTTP_USER_AGENT']);
 		$android = preg_match("/Android/i", $_SERVER['HTTP_USER_AGENT']);
-		if ($iPhone == true){
+		if ($iPhone == true || $android == true){
 		  		$return .= '
 		<link rel="stylesheet" href="../_includes/css/site/iphone.css" media="screen" />		
 		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />

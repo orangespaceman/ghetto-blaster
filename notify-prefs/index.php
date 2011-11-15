@@ -5,10 +5,10 @@ session_start();
 <head>
 	<title>Ghetto Blaster - Notify Preferences</title>	
 	<meta charset="UTF-8" />
-	<link rel="stylesheet" href="./_includes/css/site/screen.css" />
+	<link rel="stylesheet" href="../_includes/css/site/screen.css" />
 	
-	<link rel="shortcut icon" href="./_includes/icons/favicon.ico" type="image/x-icon" />
-	<link rel="icon" href="./_includes/icons/favicon.ico" type="image/x-icon" />	
+	<link rel="shortcut icon" href="../_includes/icons/favicon.ico" type="image/x-icon" />
+	<link rel="icon" href="../_includes/icons/favicon.ico" type="image/x-icon" />	
 	<script src="http://www.google.com/jsapi"></script>
 	<script>
 		google.load("jquery", "1.4.2");
@@ -16,12 +16,12 @@ session_start();
 
 	<script src="http://mediaplayer.yahoo.com/js"></script>
 
-	<script src="./_includes/js/site/ghettoBlaster.js"></script>
-	<script src="./_includes/js/site/init.js"></script>
+	<script src="../_includes/js/site/ghettoBlaster.js"></script>
+	<script src="../_includes/js/site/init.js"></script>
 </head>
 <?php
 	
-	require_once("./_includes/php/Growl.php");
+	require_once("../_includes/php/Growl.php");
 	$growl = new Growl('');
 	$messages = $growl->getMessages();
 	$user = $growl->getUserByName($_SESSION['u']);
@@ -59,10 +59,10 @@ session_start();
 <h2>How to set up Growl</h2>
 <ul>
 	<li>Under system preferences set Growl to 'Listen for incoming notification' and 'Allow remote application registration'.</li>
-	<li>Also provide the server password as 'rumfest'</li>
+	<li>Also provide the server password</li>
 	
 </ul>
-<img src='/_includes/img/site/growl-settings.png'>
+<img src='../_includes/img/site/growl-settings.png'>
 </div>
 </body>
 </html>
