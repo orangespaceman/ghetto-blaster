@@ -16,7 +16,7 @@ logActions = true
 [paths]
 
 ; path to sound clips
-sfx = "/Users/pete/Music/sfx/"
+sfx = "/Users/pete/Dropbox/_me/ghetto-blaster/sfx/"
 
 
 ; user array (if login is required)

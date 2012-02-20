@@ -71,7 +71,7 @@ class GhettoBlaster {
 		
 		// condition : does symlink exist?
 		if (!@readlink($this->symlink)) {
-			symlink($path, $this->symlink);
+			@symlink($path, $this->symlink);
 		}
 	}
 	
