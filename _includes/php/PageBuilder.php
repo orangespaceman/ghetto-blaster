@@ -1,18 +1,18 @@
-<?php 
+<?php
 /**
- * page builder class.  
+ * page builder class.
  * build page header and footer
  *
 */
 class PageBuilder {
-	
+
 	/**
 	 * The constructor.
 	 */
 	function __construct() {
 	}
 
-	
+
 	/**
 	 * Build the page
 	 */
@@ -21,21 +21,21 @@ class PageBuilder {
 		$return = '<!DOCTYPE html>
 <html>
 	<head>
-		<title>Ghetto Blaster</title>	
+		<title>Ghetto Blaster</title>
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" href="./_includes/css/site/screen.css" />
-		
+
 		<link rel="shortcut icon" href="./_includes/icons/favicon.ico" type="image/x-icon" />
 		<link rel="icon" href="./_includes/icons/favicon.ico" type="image/x-icon" />
 		';
-		
+
 		// mobile?
 		$iPhone = preg_match("/iP(hone|od)/i", $_SERVER['HTTP_USER_AGENT']);
 		$iP = preg_match("/iP(hone|od|ad)/i", $_SERVER['HTTP_USER_AGENT']);
 		$android = preg_match("/Android/i", $_SERVER['HTTP_USER_AGENT']);
 		if ($iPhone == true || $android == true){
 		  		$return .= '
-		<link rel="stylesheet" type="text/css" href="./_includes/css/site/iphone.css" media="screen" />		
+		<link rel="stylesheet" type="text/css" href="./_includes/css/site/iphone.css" media="screen" />
 		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
@@ -43,14 +43,14 @@ class PageBuilder {
     <link rel="apple-touch-icon-precomposed" href="./_includes/img/site/gb.png" />
 				';
 			}
-		
-		$return .= '		
+
+		$return .= '
 		<script src="http://www.google.com/jsapi"></script>
 		<script>
 			google.load("jquery", "1.4.2");
 		</script>
 
-		<script src="http://mediaplayer.yahoo.com/js"></script>
+		<!--<script src="http://mediaplayer.yahoo.com/js"></script>-->
 
 		<script src="./_includes/js/site/ghettoBlaster.js"></script>
 		<script src="./_includes/js/site/init.js"></script>
@@ -72,7 +72,7 @@ class PageBuilder {
 										<option>Princess</option>
 										<option>Vicki</option>
 										<option>Victoria</option>
-									</optgroup>                       
+									</optgroup>
 									<optgroup label="Male">
 										<option selected="selected">Bruce</option>
 										<option>Fred</option>
@@ -93,7 +93,7 @@ class PageBuilder {
 										<option value=\'"Pipe Organ"\'>Pipe Organ</option>
 										<option>Trinoids</option>
 										<option>Whisper</option>
-										<option>Zarvox</option>						
+										<option>Zarvox</option>
 									</optgroup>
 								</select>
 								<input type="submit" class="button" value="Say" />
@@ -119,37 +119,37 @@ class PageBuilder {
 					</fieldset>
 				</form>
 			</header>
-			
-			
+
+
 			<div id="content">
 		';
-				
-				
+
+
 		$return .= $this->buildBlaster($files);
-		
-				
-		$return .= '		
+
+
+		$return .= '
 			</div>
 		</div>
 </body>
-</html> 
+</html>
 		';
 
 		return $return;
 	}
-	
-	
+
+
 	/*
-	 * 
+	 *
 	 */
 	function buildBlaster($files) {
-		
+
 		$keys = array();
-		
+
 		$count = count($files);
-		
+
 		$return = "";
-		
+
 		foreach ($files as $key => $file) {
 			$keys[] = urlencode($key);
 			$return .= '
@@ -171,29 +171,29 @@ class PageBuilder {
 				</div>
 			';
 		}
-		
+
 		$return .= '
 			<div id="keys">
 				<h2>Quicklinks</h2>
 				<ul>
 		';
-		
+
 		foreach($keys as $key) {
 			$return .= '
 					<li><a href="#folder-'.$key.'">'.$key.'</a></li>
 			';
 		}
-					
+
 		$return .= '
 				</ul>
 			</div>
 		';
-		
+
 		return $return;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Build the login page
 	 */
@@ -204,7 +204,7 @@ class PageBuilder {
 		$return = '<!DOCTYPE html>
 <html>
 	<head>
-		<title>Ghetto Blaster - Login</title>	
+		<title>Ghetto Blaster - Login</title>
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" href="./_includes/css/site/screen.css" />
 
@@ -215,14 +215,15 @@ class PageBuilder {
 		// iphone?
 		$iPhone = preg_match("/iP(hone|od)/i", $_SERVER['HTTP_USER_AGENT']);
 		$iP = preg_match("/iP(hone|od|ad)/i", $_SERVER['HTTP_USER_AGENT']);
+		$android = preg_match("/Android/i", $_SERVER['HTTP_USER_AGENT']);
 		if ($iPhone == true || $android == true){
 		  		$return .= '
-		<link rel="stylesheet" href="./_includes/css/site/iphone.css" media="screen" />		
+		<link rel="stylesheet" href="./_includes/css/site/iphone.css" media="screen" />
 		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
 				';
 			}
 
-		$return .= '		
+		$return .= '
 		<script src="http://www.google.com/jsapi"></script>
 		<script>
 			google.load("jquery", "1.4.2");
@@ -262,7 +263,7 @@ class PageBuilder {
 						<p class="error">There was an error with your log-in details, please try again!</p>
 			';
 		}
-			
+
 		$return .= '
 					</div>
 				</div>
@@ -271,14 +272,14 @@ class PageBuilder {
 	</body>
 </html>
 		';
-	
+
 		return $return;
-	
+
 	}
-	
-	
-	
-	
+
+
+
+
 		/**
 		 * Build the page
 		 */
@@ -287,7 +288,7 @@ class PageBuilder {
 			$return = '<!DOCTYPE html>
 <html>
 	<head>
-		<title>Ghetto Blaster - Stats</title>	
+		<title>Ghetto Blaster - Stats</title>
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" href="../_includes/css/site/screen.css" />
 
@@ -301,17 +302,17 @@ class PageBuilder {
 		$android = preg_match("/Android/i", $_SERVER['HTTP_USER_AGENT']);
 		if ($iPhone == true || $android == true){
 		  		$return .= '
-		<link rel="stylesheet" href="../_includes/css/site/iphone.css" media="screen" />		
+		<link rel="stylesheet" href="../_includes/css/site/iphone.css" media="screen" />
 		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
 				';
 			}
 
-		$return .= '		
+		$return .= '
 		<script src="http://www.google.com/jsapi"></script>
 		<script>
 			google.load("jquery", "1.4.2");
 		</script>
-		
+
 		<script src="../_includes/js/lib/swfobject/swfobject.js"></script>
 		<script src="../_includes/js/site/ghettoBlaster.js"></script>
 		<script src="../_includes/js/site/init.js"></script>
@@ -328,22 +329,22 @@ class PageBuilder {
 				<ul id="stat-types" class="clearfix">
 					<li>Stats:</li>
 				';
-				
+
 			foreach ($statTypes as $name => $method) {
 				$selected = ($statType == $name) ? ' class="selected"' : '';
-				
+
 				$return .= '
 					<li'.$selected.'><a href="./'.$name.'">'.ucfirst(str_replace('-', ' ', $name)).'</a></li>
 				';
 			}
-				
-				
+
+
 			$return .= '
 				</ul>
-				
+
 				<div id="stat-content">
 			';
-			
+
 			$return .= $stats;
 
 			$return .= '
@@ -356,5 +357,5 @@ class PageBuilder {
 
 			return $return;
 		}
-	
+
 }

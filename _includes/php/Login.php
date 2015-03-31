@@ -1,10 +1,10 @@
 <?php
-	
+
 	/*
-	 * Simple login 
+	 * Simple login
 	 */
 	function doLogin($login) {
-	
+
 		// condition : if form is posted, assess it's validity
 		if (isset($_POST) && count($_POST) > 0) {
 			foreach($login as $username => $password) {
@@ -17,13 +17,13 @@
 		}
 
 		// condition : if logged in already, double-check...
-		if (isset($_SESSION) && count($_SESSION) > 0) {
+		if (isset($_SESSION) && isset($_SESSION['u']) && isset($_SESSION['p'])) {
 			foreach($login as $username => $password) {
 				if ($_SESSION['u'] == $username && $_SESSION['p'] == $password) {
 					return true;
 				}
 			}
 		}
-		
+
 		return false;
 	}
